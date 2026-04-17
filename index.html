@@ -7,97 +7,1404 @@
 <meta name="description" content="國泰世華銀行架上ETF每日掃描，Top 50強勢ETF操盤建議">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0d1117;color:#e6edf3;line-height:1.6}
-.container{max-width:1400px;margin:0 auto;padding:16px}
-h1{font-size:1.5rem;text-align:center;padding:20px 0 8px;background:linear-gradient(135deg,#58a6ff,#d2a8ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.meta{text-align:center;font-size:.85rem;color:#8b949e;margin-bottom:20px}
-/* Stats cards */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
-.stat-card{background:#161b22;border-radius:12px;padding:16px;text-align:center;border:1px solid #30363d}
-.stat-card .num{font-size:1.8rem;font-weight:700}
-.stat-card .label{font-size:.8rem;color:#8b949e;margin-top:4px}
-.stat-hot .num{color:#f85149}
-.stat-pullback .num{color:#3fb950}
-.stat-consolidate .num{color:#d29922}
-.stat-hold .num{color:#58a6ff}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#fff;color:#1f2328;line-height:1.6}
+.container{max-width:1200px;margin:0 auto;padding:16px}
+h1{font-size:1.5rem;text-align:center;padding:20px 0 8px;color:#1f2328}
+.meta{text-align:center;font-size:.85rem;color:#656d76;margin-bottom:20px}
+
+/* Signal tabs at top */
+.signal-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px;cursor:pointer}
+.signal-tab{border-radius:12px;padding:16px 12px;text-align:center;transition:all .2s;border:2px solid transparent;position:relative}
+.signal-tab:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.1)}
+.signal-tab.active{box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.signal-tab .emoji{font-size:1.6rem;display:block;margin-bottom:4px}
+.signal-tab .label{font-size:.85rem;font-weight:600;display:block}
+.signal-tab .count{font-size:2rem;font-weight:700;display:block;margin-top:4px}
+.signal-tab .unit{font-size:.75rem;color:#656d76}
+
+.tab-hot{background:#fff0f0;border-color:#ff7b72}
+.tab-hot.active{border-color:#cf222e;background:#ffebe9}
+.tab-hot .count{color:#cf222e}
+.tab-pullback{background:#f0fff4;border-color:#3fb950}
+.tab-pullback.active{border-color:#1a7f37;background:#dafbe1}
+.tab-pullback .count{color:#1a7f37}
+.tab-consolidate{background:#fff8c5;border-color:#d29922}
+.tab-consolidate.active{border-color:#9a6700;background:#fff1b5}
+.tab-consolidate .count{color:#9a6700}
+.tab-hold{background:#ddf4ff;border-color:#58a6ff}
+.tab-hold.active{border-color:#0969da;background:#b6e3ff}
+.tab-hold .count{color:#0969da}
+
+/* Detail panels */
+.detail-panel{display:none;margin:16px 0}
+.detail-panel.active{display:block}
+.empty-msg{text-align:center;padding:40px;color:#656d76;font-size:1rem}
+
+/* ETF cards */
+.etf-card{background:#fff;border:1px solid #d0d7de;border-radius:12px;margin:12px 0;overflow:hidden;transition:box-shadow .2s}
+.etf-card:hover{box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.card-header{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid #d0d7de}
+.card-code{font-weight:700;font-size:1rem;color:#0969da}
+.card-name{flex:1;font-size:.9rem;color:#1f2328;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card-currency{font-size:.75rem;color:#656d76;background:#f6f8fa;padding:2px 8px;border-radius:4px}
+.signal-hot .card-header{background:#ffebe9;border-color:#ff7b72}
+.signal-pullback .card-header{background:#dafbe1;border-color:#3fb950}
+.signal-consolidate .card-header{background:#fff1b5;border-color:#d29922}
+.signal-hold .card-header{background:#b6e3ff;border-color:#58a6ff}
+.card-body{padding:12px 16px}
+.card-row{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:.85rem;flex-wrap:wrap}
+.card-row .lbl{color:#656d76;width:70px;flex-shrink:0;font-size:.8rem}
+.card-row.perf{gap:6px}
+.pct{font-size:.75rem;padding:2px 6px;border-radius:4px;background:#f6f8fa}
+.pct.pos{color:#1a7f37;background:#dafbe1}
+.pct.neg{color:#cf222e;background:#ffebe9}
+.reason-row{margin-top:4px;font-weight:600}
+.signal-hot .reason-row span:last-child{color:#cf222e}
+.signal-pullback .reason-row span:last-child{color:#1a7f37}
+.signal-consolidate .reason-row span:last-child{color:#9a6700}
+.signal-hold .reason-row span:last-child{color:#0969da}
+
 /* Themes */
-.section-title{font-size:1.1rem;margin:24px 0 12px;padding-bottom:8px;border-bottom:1px solid #30363d}
+.section-title{font-size:1.1rem;font-weight:600;margin:28px 0 12px;padding-bottom:8px;border-bottom:2px solid #d0d7de}
 .theme-row{display:flex;align-items:center;margin:6px 0;gap:8px}
-.theme-name{width:120px;font-size:.8rem;text-align:right;flex-shrink:0}
-.theme-bar-bg{flex:1;height:18px;background:#21262d;border-radius:9px;overflow:hidden}
-.theme-bar{height:100%;background:linear-gradient(90deg,#58a6ff,#d2a8ff);border-radius:9px;min-width:2px}
-.theme-count{width:50px;font-size:.8rem;color:#8b949e}
-/* Alert lists */
-.alert-box{background:#161b22;border-radius:12px;padding:16px;border:1px solid #30363d;margin:12px 0}
-.alert-box h3{margin-bottom:8px}
-.alert-box ul{padding-left:20px}
-.alert-box li{margin:4px 0;font-size:.9rem}
-.alert-pullback{border-color:#238636}
-.alert-pullback h3{color:#3fb950}
-.alert-consolidate{border-color:#9e6a03}
-.alert-consolidate h3{color:#d29922}
-.alert-warning{border-color:#f85149;margin-top:12px;padding:12px 16px}
-.alert-warning p{color:#f85149;font-size:.9rem}
+.theme-name{width:120px;font-size:.8rem;text-align:right;flex-shrink:0;color:#656d76}
+.theme-bar-bg{flex:1;height:20px;background:#f6f8fa;border-radius:10px;overflow:hidden}
+.theme-bar{height:100%;background:linear-gradient(90deg,#58a6ff,#0969da);border-radius:10px;min-width:2px}
+.theme-count{width:50px;font-size:.8rem;color:#656d76}
+
+/* Warning */
+.alert-warning{background:#ffebe9;border:1px solid #ff7b72;border-radius:12px;padding:16px;margin:16px 0}
+.alert-warning p{color:#cf222e;font-size:.9rem;font-weight:600}
+
 /* Tables */
-.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;border:1px solid #30363d}
+.table-wrap{overflow-x:auto;margin:16px 0;border-radius:12px;border:1px solid #d0d7de}
 table{width:100%;border-collapse:collapse;font-size:.8rem}
-thead{background:#161b22;position:sticky;top:0;z-index:1}
-th{padding:10px 8px;text-align:left;color:#8b949e;font-weight:600;white-space:nowrap;border-bottom:1px solid #30363d}
-td{padding:8px;white-space:nowrap;border-bottom:1px solid #21262d}
-tr:hover{background:#161b22}
-/* Signal row colors */
-.signal-hot td{background:rgba(248,81,73,.05)}
-.signal-pullback td{background:rgba(63,185,80,.05)}
-.signal-consolidate td{background:rgba(210,153,34,.05)}
-/* Percent colors */
-.pos{color:#3fb950}
-.neg{color:#f85149}
-/* Signal badges */
-td.signal-hot{color:#f85149;font-weight:600;white-space:nowrap}
-td.signal-pullback{color:#3fb950;font-weight:600;white-space:nowrap}
-td.signal-consolidate{color:#d29922;font-weight:600;white-space:nowrap}
-td.signal-hold{color:#58a6ff;white-space:nowrap}
-td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
-.code{font-weight:600;color:#d2a8ff}
+thead{background:#f6f8fa;position:sticky;top:0;z-index:1}
+th{padding:10px 8px;text-align:left;color:#656d76;font-weight:600;white-space:nowrap;border-bottom:2px solid #d0d7de}
+td{padding:8px;white-space:nowrap;border-bottom:1px solid #d8dee4}
+tr:hover{background:#f6f8fa}
+.pos{color:#1a7f37;font-weight:600}
+.neg{color:#cf222e;font-weight:600}
+.code{font-weight:600;color:#0969da}
 .name{max-width:250px;overflow:hidden;text-overflow:ellipsis}
-/* Tabs */
+.signal-hot{color:#cf222e;font-weight:600;white-space:nowrap}
+.signal-pullback{color:#1a7f37;font-weight:600;white-space:nowrap}
+.signal-consolidate{color:#9a6700;font-weight:600;white-space:nowrap}
+.signal-hold{color:#0969da;font-weight:600;white-space:nowrap}
+td.reason{color:#656d76;font-size:.75rem;max-width:200px;white-space:normal}
+
+/* Tabs for table views */
 .tabs{display:flex;gap:8px;margin:20px 0 12px}
-.tab{padding:8px 16px;background:#21262d;border:none;color:#8b949e;cursor:pointer;border-radius:8px;font-size:.85rem}
-.tab.active{background:#58a6ff;color:#fff}
+.tab{padding:8px 16px;background:#f6f8fa;border:1px solid #d0d7de;color:#656d76;cursor:pointer;border-radius:8px;font-size:.85rem;transition:all .2s}
+.tab:hover{background:#eaeef2}
+.tab.active{background:#0969da;color:#fff;border-color:#0969da}
 .tab-content{display:none}
 .tab-content.active{display:block}
+
 /* Footer */
-.footer{text-align:center;color:#8b949e;font-size:.75rem;margin:32px 0 16px;padding:16px;border-top:1px solid #21262d}
+.footer{text-align:center;color:#656d76;font-size:.75rem;margin:32px 0 16px;padding:16px;border-top:1px solid #d8dee4}
+
 /* Mobile responsive */
 @media(max-width:768px){
-  .stats{grid-template-columns:repeat(2,1fr)}
+  .signal-tabs{grid-template-columns:repeat(2,1fr);gap:8px}
+  .signal-tab{padding:12px 8px}
+  .signal-tab .count{font-size:1.5rem}
+  .signal-tab .emoji{font-size:1.3rem}
   .hide-mobile{display:none}
   td.reason{display:none}
   table{font-size:.7rem}
   th,td{padding:6px 4px}
-  .name{max-width:150px}
+  .name{max-width:140px}
   .theme-name{width:80px;font-size:.7rem}
+  .card-row.perf{gap:4px}
+  .pct{font-size:.65rem}
   h1{font-size:1.2rem}
 }
 @media(max-width:480px){
-  .stats{grid-template-columns:repeat(2,1fr);gap:8px}
-  .stat-card{padding:10px}
-  .stat-card .num{font-size:1.3rem}
   .container{padding:8px}
+  .signal-tabs{gap:6px}
+  .signal-tab{padding:10px 6px}
+  .signal-tab .count{font-size:1.2rem}
+  .card-row .lbl{width:60px;font-size:.75rem}
 }
 </style>
 </head>
 <body>
 <div class="container">
 <h1>📈 國泰世華架上 ETF 每日掃描</h1>
-<p class="meta">收盤日期：2026/04/16 · 更新時間：2026-04-17 11:28 · 共 297 檔 ETF</p>
+<p class="meta">收盤日期：2026/04/16 · 更新時間：2026-04-17 11:37 · 共 297 檔 ETF</p>
 
-<div class="stats">
-  <div class="stat-card stat-hot"><div class="num">28</div><div class="label">🔥 短線過熱</div></div>
-  <div class="stat-card stat-pullback"><div class="num">4</div><div class="label">🟢 拉回可買</div></div>
-  <div class="stat-card stat-consolidate"><div class="num">1</div><div class="label">🟡 回調觀察</div></div>
-  <div class="stat-card stat-hold"><div class="num">17</div><div class="label">⚖️ 強勢持有</div></div>
+<div class="signal-tabs" id="signalTabs">
+  <div class="signal-tab tab-hot active" onclick="showSignal('hot')">
+    <span class="emoji">🔥</span><span class="label">短線過熱</span><span class="count">28</span><span class="unit">檔</span>
+  </div>
+  <div class="signal-tab tab-pullback" onclick="showSignal('pullback')">
+    <span class="emoji">🟢</span><span class="label">拉回可買</span><span class="count">4</span><span class="unit">檔</span>
+  </div>
+  <div class="signal-tab tab-consolidate" onclick="showSignal('consolidate')">
+    <span class="emoji">🟡</span><span class="label">回調觀察</span><span class="count">1</span><span class="unit">檔</span>
+  </div>
+  <div class="signal-tab tab-hold" onclick="showSignal('hold')">
+    <span class="emoji">⚖️</span><span class="label">強勢持有</span><span class="count">17</span><span class="unit">檔</span>
+  </div>
 </div>
+
+<div id="detail-hot" class="detail-panel">
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">SOXL</span>
+                <span class="card-name">SOXL-每日三倍做多半導體指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>88.3700 / 85.8700</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +2.80%</span>
+                  <span class="pct pos">1週 +22.77%</span>
+                  <span class="pct pos">1月 +64.59%</span>
+                  <span class="pct pos">3月 +45.47%</span>
+                  <span class="pct pos">6月 +117.82%</span>
+                  <span class="pct pos">1年 +849.41%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>112.5</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.73</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>成熟股票 ＞ 科技產業股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>非常積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+64.6%、1週急漲+22.8%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">USD</span>
+                <span class="card-name">USD-ProShares二倍做多半導體指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>68.8500 / 68.1300</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +1.06%</span>
+                  <span class="pct pos">1週 +16.71%</span>
+                  <span class="pct pos">1月 +29.44%</span>
+                  <span class="pct pos">3月 +19.71%</span>
+                  <span class="pct pos">6月 +34.06%</span>
+                  <span class="pct pos">1年 +303.54%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>67.6</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.68</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>成熟股票 ＞ 科技產業股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>非常積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+29.4%、1週急漲+16.7%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">1570.JP</span>
+                <span class="card-name">1570.JT-NextFunds兩倍做多日經225交易所基金</span>
+                <span class="card-currency">日圓</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>59020.0000 / 58774.2000</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +5.06%</span>
+                  <span class="pct pos">1週 +13.20%</span>
+                  <span class="pct pos">1月 +22.86%</span>
+                  <span class="pct pos">3月 +19.57%</span>
+                  <span class="pct pos">6月 +47.00%</span>
+                  <span class="pct pos">1年 +196.29%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>37.6</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.91</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>亞太股 ＞ 日本股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>非常積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+22.9%、1週急漲+13.2%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">NVDL</span>
+                <span class="card-name">NVDL-GraniteShares兩倍做多NVDA主動型ETF投/O</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>93.1700 / 93.7434</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct neg">1日 -0.61%</span>
+                  <span class="pct pos">1週 +15.80%</span>
+                  <span class="pct pos">1月 +14.90%</span>
+                  <span class="pct pos">3月 +6.77%</span>
+                  <span class="pct pos">6月 +5.95%</span>
+                  <span class="pct pos">1年 +186.24%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>73.1</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.49</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>成熟股票 ＞ 科技產業股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>非常積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+14.9%、1週急漲+15.8%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">REMX</span>
+                <span class="card-name">REMX-全球稀土及策略金屬產業指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>103.0500 / 102.3300</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +5.76%</span>
+                  <span class="pct pos">1週 +10.57%</span>
+                  <span class="pct pos">1月 +14.37%</span>
+                  <span class="pct pos">3月 +15.55%</span>
+                  <span class="pct pos">6月 +44.04%</span>
+                  <span class="pct pos">1年 +183.75%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>37.8</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.85</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 天然資源股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+14.4%、1週急漲+10.6%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">EWY</span>
+                <span class="card-name">EWY-MSCI南韓指數基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>147.4700 / 145.9900</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +1.76%</span>
+                  <span class="pct pos">1週 +5.87%</span>
+                  <span class="pct pos">1月 +10.80%</span>
+                  <span class="pct pos">3月 +31.41%</span>
+                  <span class="pct pos">6月 +71.58%</span>
+                  <span class="pct pos">1年 +178.92%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>28.4</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>1.08</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>亞太股 ＞ 韓國股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+10.8%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">1542.JP</span>
+                <span class="card-name">1542.JT-三菱日聯日本實體白銀交易所交易基金</span>
+                <span class="card-currency">日圓</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>37290.0000 / 36719.5500</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +1.64%</span>
+                  <span class="pct pos">1週 +10.65%</span>
+                  <span class="pct pos">1月 +4.31%</span>
+                  <span class="pct neg">3月 -13.28%</span>
+                  <span class="pct pos">6月 +46.70%</span>
+                  <span class="pct pos">1年 +172.19%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>62.3</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.55</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>- ＞ -</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1週急漲+10.7%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">2644.JP</span>
+                <span class="card-name">2644.JT-GlobalX日本半導體指數基金</span>
+                <span class="card-currency">日圓</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>3671.0000 / 3663.8100</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +2.94%</span>
+                  <span class="pct pos">1週 +9.88%</span>
+                  <span class="pct pos">1月 +15.59%</span>
+                  <span class="pct pos">3月 +21.80%</span>
+                  <span class="pct pos">6月 +53.30%</span>
+                  <span class="pct pos">1年 +169.66%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>32.2</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.96</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>亞太股 ＞ 日本股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+15.6%、1週急漲+9.9%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">UFO</span>
+                <span class="card-name">UFO-Procure太空ETF</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>54.7000 / 52.1100</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +4.79%</span>
+                  <span class="pct pos">1週 +9.04%</span>
+                  <span class="pct pos">1月 +19.72%</span>
+                  <span class="pct pos">3月 +15.50%</span>
+                  <span class="pct pos">6月 +41.16%</span>
+                  <span class="pct pos">1年 +160.28%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>40.7</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.73</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>- ＞ -</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+19.7%、1週急漲+9.0%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">URA</span>
+                <span class="card-name">URA-全球鈾礦產業指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>55.2700 / 54.4900</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +0.78%</span>
+                  <span class="pct pos">1週 +8.52%</span>
+                  <span class="pct pos">1月 +10.65%</span>
+                  <span class="pct pos">3月 +1.60%</span>
+                  <span class="pct pos">6月 +3.89%</span>
+                  <span class="pct pos">1年 +154.99%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>58.0</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.54</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 天然資源股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+10.7%、1週急漲+8.5%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">PBW</span>
+                <span class="card-name">PBW-景順清潔能源指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>35.3900 / 34.9300</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +1.29%</span>
+                  <span class="pct pos">1週 +8.62%</span>
+                  <span class="pct pos">1月 +8.57%</span>
+                  <span class="pct pos">3月 +0.33%</span>
+                  <span class="pct pos">6月 +4.44%</span>
+                  <span class="pct pos">1年 +145.77%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>41.3</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.67</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 能源股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1週急漲+8.6%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">SOXX</span>
+                <span class="card-name">SOXX-iShares半導體產業指數基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>405.9500 / 401.9200</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +1.02%</span>
+                  <span class="pct pos">1週 +7.22%</span>
+                  <span class="pct pos">1月 +20.24%</span>
+                  <span class="pct pos">3月 +18.61%</span>
+                  <span class="pct pos">6月 +40.77%</span>
+                  <span class="pct pos">1年 +144.07%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>31.9</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.84</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>成熟股票 ＞ 科技產業股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+20.2%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">LIT</span>
+                <span class="card-name">LIT-全球鋰礦產業指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>82.3100 / 79.1900</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +3.35%</span>
+                  <span class="pct pos">1週 +7.26%</span>
+                  <span class="pct pos">1月 +14.93%</span>
+                  <span class="pct pos">3月 +18.16%</span>
+                  <span class="pct pos">6月 +43.74%</span>
+                  <span class="pct pos">1年 +136.85%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>23.1</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>1.10</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 天然資源股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+14.9%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">SMH</span>
+                <span class="card-name">SMH-VanEck半導體產業指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>454.8000 / 454.8100</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +0.40%</span>
+                  <span class="pct pos">1週 +5.69%</span>
+                  <span class="pct pos">1月 +15.45%</span>
+                  <span class="pct pos">3月 +13.59%</span>
+                  <span class="pct pos">6月 +32.89%</span>
+                  <span class="pct pos">1年 +134.74%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>29.1</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.87</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>成熟股票 ＞ 科技產業股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+15.5%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">0053.TW</span>
+                <span class="card-name">國內-元大台灣電子科技基金</span>
+                <span class="card-currency">台幣</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>194.5000 / 193.2000</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +2.10%</span>
+                  <span class="pct pos">1週 +8.60%</span>
+                  <span class="pct pos">1月 +15.05%</span>
+                  <span class="pct pos">3月 +24.68%</span>
+                  <span class="pct pos">6月 +44.06%</span>
+                  <span class="pct pos">1年 +133.96%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>21.2</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>1.21</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>亞太股 ＞ 台灣股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+15.1%、1週急漲+8.6%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">006201.TW</span>
+                <span class="card-name">國內-元大櫃買ETF傘型之富櫃５０基金</span>
+                <span class="card-currency">台幣</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>40.3400 / 39.4800</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +5.05%</span>
+                  <span class="pct pos">1週 +12.12%</span>
+                  <span class="pct pos">1月 +25.32%</span>
+                  <span class="pct pos">3月 +45.68%</span>
+                  <span class="pct pos">6月 +68.76%</span>
+                  <span class="pct pos">1年 +129.66%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>26.0</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.97</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>亞太股 ＞ 台灣股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+25.3%、1週急漲+12.1%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">0050.TW</span>
+                <span class="card-name">國內-元大台灣卓越50基金</span>
+                <span class="card-currency">台幣</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>85.0000 / 85.1200</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +1.01%</span>
+                  <span class="pct pos">1週 +7.39%</span>
+                  <span class="pct pos">1月 +12.43%</span>
+                  <span class="pct pos">3月 +19.72%</span>
+                  <span class="pct pos">6月 +36.83%</span>
+                  <span class="pct pos">1年 +113.88%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>20.2</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>1.13</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>亞太股 ＞ 台灣股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+12.4%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">DAPP</span>
+                <span class="card-name">DAPP-VanEck數位轉型交易所交易基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>18.5400 / 18.5900</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +0.43%</span>
+                  <span class="pct pos">1週 +12.57%</span>
+                  <span class="pct pos">1月 +7.60%</span>
+                  <span class="pct neg">3月 -11.88%</span>
+                  <span class="pct neg">6月 -24.88%</span>
+                  <span class="pct pos">1年 +108.31%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>74.3</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.38</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>- ＞ -</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>非常積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1週急漲+12.6%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">CNXT</span>
+                <span class="card-name">CNXT-MV中國中小企業指數基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>51.2900 / 51.0100</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +2.66%</span>
+                  <span class="pct pos">1週 +9.64%</span>
+                  <span class="pct pos">1月 +9.99%</span>
+                  <span class="pct pos">3月 +10.66%</span>
+                  <span class="pct pos">6月 +26.47%</span>
+                  <span class="pct pos">1年 +107.78%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>27.1</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.79</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>亞太股 ＞ 中國股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1週急漲+9.6%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">ARKQ</span>
+                <span class="card-name">ARKQ-ARK自主技術與機器人主動型交易所交易基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>128.2500 / 126.2900</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +1.55%</span>
+                  <span class="pct pos">1週 +8.51%</span>
+                  <span class="pct pos">1月 +7.55%</span>
+                  <span class="pct neg">3月 -4.33%</span>
+                  <span class="pct pos">6月 +8.84%</span>
+                  <span class="pct pos">1年 +99.02%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>35.5</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.59</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>成熟股票 ＞ 科技產業股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1週急漲+8.5%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">UWM</span>
+                <span class="card-name">UWM-二倍做多羅素2000指數基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>55.1700 / 54.9700</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +0.40%</span>
+                  <span class="pct pos">1週 +6.12%</span>
+                  <span class="pct pos">1月 +17.11%</span>
+                  <span class="pct pos">3月 +1.14%</span>
+                  <span class="pct pos">6月 +17.28%</span>
+                  <span class="pct pos">1年 +98.41%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>36.8</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.57</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>成熟股票 ＞ 美國股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>非常積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+17.1%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">QLD</span>
+                <span class="card-name">QLD-兩倍做多那斯達克100指數基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>74.8000 / 74.1300</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +0.93%</span>
+                  <span class="pct pos">1週 +9.98%</span>
+                  <span class="pct pos">1月 +13.03%</span>
+                  <span class="pct pos">3月 +4.27%</span>
+                  <span class="pct pos">6月 +9.72%</span>
+                  <span class="pct pos">1年 +92.76%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>37.2</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.53</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>成熟股票 ＞ 科技產業股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>非常積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+13.0%、1週急漲+10.0%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">EWT</span>
+                <span class="card-name">EWT-MSCI台灣指數基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>81.3500 / 80.4800</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +0.76%</span>
+                  <span class="pct pos">1週 +6.47%</span>
+                  <span class="pct pos">1月 +12.94%</span>
+                  <span class="pct pos">3月 +20.80%</span>
+                  <span class="pct pos">6月 +26.83%</span>
+                  <span class="pct pos">1年 +83.72%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>23.3</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.75</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>亞太股 ＞ 台灣股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+12.9%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">DRIV</span>
+                <span class="card-name">DRIV-GlobalX自動駕駛與電動車指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>34.9800 / 34.1500</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +2.34%</span>
+                  <span class="pct pos">1週 +7.20%</span>
+                  <span class="pct pos">1月 +13.94%</span>
+                  <span class="pct pos">3月 +7.76%</span>
+                  <span class="pct pos">6月 +20.67%</span>
+                  <span class="pct pos">1年 +83.55%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>22.7</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.77</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>成熟股票 ＞ 科技產業股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+13.9%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">QTUM</span>
+                <span class="card-name">QTUM-Defiance量子交易所交易基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>125.1700 / 123.0900</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +1.44%</span>
+                  <span class="pct pos">1週 +7.78%</span>
+                  <span class="pct pos">1月 +12.63%</span>
+                  <span class="pct pos">3月 +5.91%</span>
+                  <span class="pct pos">6月 +13.91%</span>
+                  <span class="pct pos">1年 +81.40%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>25.5</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.68</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>- ＞ -</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+12.6%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">SLX</span>
+                <span class="card-name">SLX-鋼鐵指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>99.6100 / 99.3300</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct neg">1日 -0.16%</span>
+                  <span class="pct pos">1週 +1.54%</span>
+                  <span class="pct pos">1月 +11.13%</span>
+                  <span class="pct pos">3月 +9.78%</span>
+                  <span class="pct pos">6月 +37.12%</span>
+                  <span class="pct pos">1年 +79.53%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>20.2</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.82</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 天然資源股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+11.1%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">1321.JP</span>
+                <span class="card-name">1321.JT-NextFunds日經225交易所交易基金</span>
+                <span class="card-currency">日圓</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>62390.0000 / 62263.3000</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +2.51%</span>
+                  <span class="pct pos">1週 +6.65%</span>
+                  <span class="pct pos">1月 +11.89%</span>
+                  <span class="pct pos">3月 +11.29%</span>
+                  <span class="pct pos">6月 +24.53%</span>
+                  <span class="pct pos">1年 +78.92%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>19.3</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.90</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>亞太股 ＞ 日本股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>穩健</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+11.9%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hot">
+              <div class="card-header">
+                <span class="card-code">EWZ</span>
+                <span class="card-name">EWZ-MSCI巴西指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>41.4700 / 41.4900</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +0.02%</span>
+                  <span class="pct pos">1週 +2.29%</span>
+                  <span class="pct pos">1月 +13.52%</span>
+                  <span class="pct pos">3月 +25.02%</span>
+                  <span class="pct pos">6月 +46.80%</span>
+                  <span class="pct pos">1年 +76.38%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>25.8</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.64</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>新興市場股票 ＞ 拉丁美洲股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🔥短線過熱-賣出 — 1月大漲+13.5%</span></div>
+              </div>
+            </div></div>
+<div id="detail-pullback" class="detail-panel">
+            <div class="etf-card signal-pullback">
+              <div class="card-header">
+                <span class="card-code">TAN</span>
+                <span class="card-name">TAN-GUGGENHEIM太陽能指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>54.4900 / 55.4400</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct neg">1日 -1.50%</span>
+                  <span class="pct neg">1週 -0.42%</span>
+                  <span class="pct neg">1月 -3.98%</span>
+                  <span class="pct pos">3月 +5.03%</span>
+                  <span class="pct pos">6月 +13.45%</span>
+                  <span class="pct pos">1年 +95.80%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>29.3</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.68</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 能源股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>非常積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🟢拉回可買 — 1月回調-4.0%但1年仍強+95.8%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-pullback">
+              <div class="card-header">
+                <span class="card-code">ERX</span>
+                <span class="card-name">ERX-兩倍做多美國能源類股指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>87.6100 / 85.0600</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +3.07%</span>
+                  <span class="pct neg">1週 -2.77%</span>
+                  <span class="pct neg">1月 -4.02%</span>
+                  <span class="pct pos">3月 +39.47%</span>
+                  <span class="pct pos">6月 +72.85%</span>
+                  <span class="pct pos">1年 +95.27%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>42.6</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.49</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 能源股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>非常積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🟢拉回可買 — 1月回調-4.0%但1年仍強+95.3%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-pullback">
+              <div class="card-header">
+                <span class="card-code">UGL</span>
+                <span class="card-name">UGL-兩倍做多黃金基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>64.0500 / 64.2800</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct neg">1日 -0.16%</span>
+                  <span class="pct pos">1週 +0.91%</span>
+                  <span class="pct neg">1月 -10.31%</span>
+                  <span class="pct pos">3月 +2.73%</span>
+                  <span class="pct pos">6月 +12.74%</span>
+                  <span class="pct pos">1年 +77.10%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>49.3</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.38</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 貴金屬股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>非常積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🟢拉回可買 — 1月回調-10.3%但1年仍強+77.1%</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-pullback">
+              <div class="card-header">
+                <span class="card-code">1699.JP</span>
+                <span class="card-name">1699.JT-NextFunds野村原油指數交易所交易基金</span>
+                <span class="card-currency">日圓</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>586.5000 / 588.7000</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +0.45%</span>
+                  <span class="pct pos">1週 +0.46%</span>
+                  <span class="pct neg">1月 -4.74%</span>
+                  <span class="pct pos">3月 +47.44%</span>
+                  <span class="pct pos">6月 +57.75%</span>
+                  <span class="pct pos">1年 +74.19%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>52.4</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.36</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>- ＞ -</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>非常積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🟢拉回可買 — 1月回調-4.7%但1年仍強+74.2%</span></div>
+              </div>
+            </div></div>
+<div id="detail-consolidate" class="detail-panel">
+            <div class="etf-card signal-consolidate">
+              <div class="card-header">
+                <span class="card-code">SLV</span>
+                <span class="card-name">SLV-安碩白銀基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>71.2400 / 71.1300</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct neg">1日 -0.84%</span>
+                  <span class="pct pos">1週 +4.17%</span>
+                  <span class="pct neg">1月 -2.70%</span>
+                  <span class="pct neg">3月 -12.07%</span>
+                  <span class="pct pos">6月 +44.89%</span>
+                  <span class="pct pos">1年 +139.38%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>54.7</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.52</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 貴金屬股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>🟡回調觀察 — 1月微跌-2.7%，1年漲+139.4%</span></div>
+              </div>
+            </div></div>
+<div id="detail-hold" class="detail-panel">
+            <div class="etf-card signal-hold">
+              <div class="card-header">
+                <span class="card-code">NUGT</span>
+                <span class="card-name">NUGT-兩倍做多黃金礦業指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>211.2500 / 212.0700</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct neg">1日 -0.57%</span>
+                  <span class="pct neg">1週 -1.78%</span>
+                  <span class="pct pos">1月 +3.59%</span>
+                  <span class="pct neg">3月 -9.90%</span>
+                  <span class="pct pos">6月 +13.44%</span>
+                  <span class="pct pos">1年 +174.49%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>85.5</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.45</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 貴金屬股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>非常積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>⚖️強勢持有 — 1月穩漲+3.6%未過熱</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hold">
+              <div class="card-header">
+                <span class="card-code">COPX</span>
+                <span class="card-name">COPX-GlobalX銅礦業類股指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>86.2100 / 86.1800</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +0.15%</span>
+                  <span class="pct pos">1週 +5.70%</span>
+                  <span class="pct pos">1月 +9.60%</span>
+                  <span class="pct pos">3月 +6.74%</span>
+                  <span class="pct pos">6月 +40.90%</span>
+                  <span class="pct pos">1年 +145.08%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>29.3</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.92</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 天然資源股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>⚖️強勢持有 — 1月穩漲+9.6%未過熱</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hold">
+              <div class="card-header">
+                <span class="card-code">BIB</span>
+                <span class="card-name">BIB-兩倍做多那斯達克生技指數基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>86.7209 / 87.9800</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct neg">1日 -1.42%</span>
+                  <span class="pct pos">1週 +2.79%</span>
+                  <span class="pct pos">1月 +8.14%</span>
+                  <span class="pct pos">3月 +7.30%</span>
+                  <span class="pct pos">6月 +31.20%</span>
+                  <span class="pct pos">1年 +114.79%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>20.9</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>1.06</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>成熟股票 ＞ 生物科技股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>非常積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>⚖️強勢持有 — 1月穩漲+8.1%未過熱</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hold">
+              <div class="card-header">
+                <span class="card-code">XME</span>
+                <span class="card-name">XME-SPDR標準普爾金屬與礦產業指數基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>115.9600 / 115.7100</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +0.24%</span>
+                  <span class="pct pos">1週 +2.88%</span>
+                  <span class="pct pos">1月 +5.03%</span>
+                  <span class="pct neg">3月 -6.53%</span>
+                  <span class="pct pos">6月 +8.97%</span>
+                  <span class="pct pos">1年 +112.68%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>37.3</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.62</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 天然資源股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>⚖️強勢持有 — 1月穩漲+5.0%未過熱</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hold">
+              <div class="card-header">
+                <span class="card-code">GDXJ</span>
+                <span class="card-name">GDXJ-小型黃金礦業指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>129.4300 / 128.9400</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +0.04%</span>
+                  <span class="pct pos">1週 +1.22%</span>
+                  <span class="pct pos">1月 +2.85%</span>
+                  <span class="pct pos">3月 +1.06%</span>
+                  <span class="pct pos">6月 +18.54%</span>
+                  <span class="pct pos">1年 +103.27%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>44.8</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.50</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 貴金屬股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>⚖️強勢持有 — 1月穩漲+2.9%未過熱</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hold">
+              <div class="card-header">
+                <span class="card-code">NLR</span>
+                <span class="card-name">NLR-VanEck鈾與核能ETF</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>145.4500 / 145.1200</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +0.35%</span>
+                  <span class="pct pos">1週 +6.53%</span>
+                  <span class="pct pos">1月 +5.48%</span>
+                  <span class="pct neg">3月 -2.08%</span>
+                  <span class="pct neg">6月 -5.33%</span>
+                  <span class="pct pos">1年 +101.67%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>45.8</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.49</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>- ＞ -</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>⚖️強勢持有 — 1月穩漲+5.5%未過熱</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hold">
+              <div class="card-header">
+                <span class="card-code">UCO</span>
+                <span class="card-name">UCO-兩倍做多彭博原油指數基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>41.6800 / 41.4900</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +1.31%</span>
+                  <span class="pct pos">1週 +4.41%</span>
+                  <span class="pct pos">1月 +6.87%</span>
+                  <span class="pct pos">3月 +103.71%</span>
+                  <span class="pct pos">6月 +112.87%</span>
+                  <span class="pct pos">1年 +96.60%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>81.5</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.32</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 能源股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>非常積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>⚖️強勢持有 — 1月穩漲+6.9%未過熱</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hold">
+              <div class="card-header">
+                <span class="card-code">OIH</span>
+                <span class="card-name">OIH-美國石油服務產業指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>407.6300 / 407.4600</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +1.07%</span>
+                  <span class="pct neg">1週 -0.83%</span>
+                  <span class="pct pos">1月 +9.41%</span>
+                  <span class="pct pos">3月 +24.81%</span>
+                  <span class="pct pos">6月 +66.12%</span>
+                  <span class="pct pos">1年 +96.25%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>28.1</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.71</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 能源股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>⚖️強勢持有 — 1月穩漲+9.4%未過熱</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hold">
+              <div class="card-header">
+                <span class="card-code">006204.TW</span>
+                <span class="card-name">國內-永豐臺灣加權ETF基金</span>
+                <span class="card-currency">台幣</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>186.6000 / 187.3600</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +1.36%</span>
+                  <span class="pct pos">1週 +5.99%</span>
+                  <span class="pct pos">1月 +8.74%</span>
+                  <span class="pct pos">3月 +16.52%</span>
+                  <span class="pct pos">6月 +34.92%</span>
+                  <span class="pct pos">1年 +93.20%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>15.8</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>1.24</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>亞太股 ＞ 台灣股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>穩健</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>⚖️強勢持有 — 1月穩漲+8.7%未過熱</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hold">
+              <div class="card-header">
+                <span class="card-code">1629.JP</span>
+                <span class="card-name">1629.JT-日本商業及批發貿易類股交易所交易基金</span>
+                <span class="card-currency">日圓</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>280.0000 / 278.6000</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +1.63%</span>
+                  <span class="pct neg">1週 -3.28%</span>
+                  <span class="pct pos">1月 +2.34%</span>
+                  <span class="pct pos">3月 +10.06%</span>
+                  <span class="pct pos">6月 +39.03%</span>
+                  <span class="pct pos">1年 +90.76%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>17.7</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>1.09</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>亞太股 ＞ 日本股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>⚖️強勢持有 — 1月穩漲+2.3%未過熱</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hold">
+              <div class="card-header">
+                <span class="card-code">ARKX</span>
+                <span class="card-name">ARKX-ARK太空探索與創新主動型交易所交易基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>33.4700 / 32.7700</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +2.01%</span>
+                  <span class="pct pos">1週 +7.21%</span>
+                  <span class="pct pos">1月 +7.10%</span>
+                  <span class="pct neg">3月 -4.83%</span>
+                  <span class="pct pos">6月 +9.74%</span>
+                  <span class="pct pos">1年 +90.17%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>39.8</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.50</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>成熟股票 ＞ 科技產業股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>⚖️強勢持有 — 1月穩漲+7.1%未過熱</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hold">
+              <div class="card-header">
+                <span class="card-code">GDX</span>
+                <span class="card-name">GDX-美國證交所金礦指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>97.6600 / 97.4900</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct neg">1日 -0.11%</span>
+                  <span class="pct neg">1週 -0.70%</span>
+                  <span class="pct pos">1月 +3.48%</span>
+                  <span class="pct pos">3月 +0.43%</span>
+                  <span class="pct pos">6月 +16.50%</span>
+                  <span class="pct pos">1年 +89.50%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>40.8</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.49</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 天然資源股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>⚖️強勢持有 — 1月穩漲+3.5%未過熱</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hold">
+              <div class="card-header">
+                <span class="card-code">IEZ</span>
+                <span class="card-name">IEZ-道瓊美國原油設備及服務指數基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>29.1900 / 28.9700</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +0.69%</span>
+                  <span class="pct neg">1週 -1.35%</span>
+                  <span class="pct pos">1月 +9.71%</span>
+                  <span class="pct pos">3月 +22.56%</span>
+                  <span class="pct pos">6月 +60.96%</span>
+                  <span class="pct pos">1年 +86.21%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>28.1</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.65</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 能源股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>⚖️強勢持有 — 1月穩漲+9.7%未過熱</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hold">
+              <div class="card-header">
+                <span class="card-code">USO</span>
+                <span class="card-name">USO-美國石油基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>125.8400 / 127.3100</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +2.65%</span>
+                  <span class="pct neg">1週 -0.88%</span>
+                  <span class="pct pos">1月 +9.40%</span>
+                  <span class="pct pos">3月 +75.63%</span>
+                  <span class="pct pos">6月 +85.58%</span>
+                  <span class="pct pos">1年 +85.74%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>55.2</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.37</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 能源股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>⚖️強勢持有 — 1月穩漲+9.4%未過熱</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hold">
+              <div class="card-header">
+                <span class="card-code">KARS</span>
+                <span class="card-name">KARS-KraneShares電動車及未來移動指數型基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>35.4100 / 34.4600</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +2.46%</span>
+                  <span class="pct pos">1週 +6.66%</span>
+                  <span class="pct pos">1月 +9.39%</span>
+                  <span class="pct pos">3月 +10.76%</span>
+                  <span class="pct pos">6月 +16.08%</span>
+                  <span class="pct pos">1年 +81.30%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>19.2</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.88</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>成熟股票 ＞ 科技產業股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>⚖️強勢持有 — 1月穩漲+9.4%未過熱</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hold">
+              <div class="card-header">
+                <span class="card-code">BNO</span>
+                <span class="card-name">BNO-布蘭特原油基金</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>49.0800 / 49.6400</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct pos">1日 +3.72%</span>
+                  <span class="pct pos">1週 +1.15%</span>
+                  <span class="pct pos">1月 +2.98%</span>
+                  <span class="pct pos">3月 +64.48%</span>
+                  <span class="pct pos">6月 +76.67%</span>
+                  <span class="pct pos">1年 +78.08%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>53.2</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.36</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>大宗商品 ＞ 能源股票</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>⚖️強勢持有 — 1月穩漲+3.0%未過熱</span></div>
+              </div>
+            </div>
+            <div class="etf-card signal-hold">
+              <div class="card-header">
+                <span class="card-code">NVDY</span>
+                <span class="card-name">NVDY-YieldMaxNVDA期權收益策略主動型交易所交易基</span>
+                <span class="card-currency">美元</span>
+              </div>
+              <div class="card-body">
+                <div class="card-row"><span class="lbl">收盤日</span><span>2026/04/16</span></div>
+                <div class="card-row"><span class="lbl">市價/淨值</span><span>13.8100 / 13.9600</span></div>
+                <div class="card-row perf">
+                  <span class="lbl">績效</span>
+                  <span class="pct neg">1日 -1.15%</span>
+                  <span class="pct pos">1週 +4.38%</span>
+                  <span class="pct pos">1月 +3.70%</span>
+                  <span class="pct pos">3月 +4.20%</span>
+                  <span class="pct pos">6月 +10.12%</span>
+                  <span class="pct pos">1年 +74.93%</span>
+                </div>
+                <div class="card-row"><span class="lbl">波動率</span><span>24.1</span></div>
+                <div class="card-row"><span class="lbl">Sharpe</span><span>0.67</span></div>
+                <div class="card-row"><span class="lbl">類別</span><span>- ＞ -</span></div>
+                <div class="card-row"><span class="lbl">風險</span><span>非常積極</span></div>
+                <div class="card-row reason-row"><span class="lbl">判斷</span><span>⚖️強勢持有 — 1月穩漲+3.7%未過熱</span></div>
+              </div>
+            </div></div>
+
+<div class="alert-warning"><p>⚠️ 過熱比例過高：Top 50 中超過 50% 處於短線過熱，市場偏熱，追高風險極大</p></div>
 
 <div class="section-title">🏭 主題分布（Top 50）</div>
 <div class="theme-row"><span class="theme-name">科技產業股票</span><div class="theme-bar-bg"><div class="theme-bar" style="width:20.0%"></div></div><span class="theme-count">10檔</span></div>
@@ -110,25 +1417,8 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
 <div class="theme-row"><span class="theme-name">韓國股票</span><div class="theme-bar-bg"><div class="theme-bar" style="width:2.0%"></div></div><span class="theme-count">1檔</span></div>
 
 
-<div class="alert-box alert-pullback">
-<h3>🟢 拉回可買 — 強勢中回調，分批佈局</h3>
-<ul><li><strong>TAN</strong> TAN-GUGGENHEIM太陽能指數型基金 — 1月-4.0%，1年+95.8%</li>
-<li><strong>ERX</strong> ERX-兩倍做多美國能源類股指數型基金 — 1月-4.0%，1年+95.3%</li>
-<li><strong>UGL</strong> UGL-兩倍做多黃金基金 — 1月-10.3%，1年+77.1%</li>
-<li><strong>1699.JP</strong> 1699.JT-NextFunds野村原油指數交易所交易基金 — 1月-4.7%，1年+74.2%</li>
-</ul>
-</div>
-
-<div class="alert-box alert-consolidate">
-<h3>🟡 回調觀察 — 等止穩再進場</h3>
-<ul><li><strong>SLV</strong> SLV-安碩白銀基金 — 1月-2.7%，1年+139.4%</li>
-</ul>
-</div>
-
-<div class="alert-box alert-warning"><p>⚠️ 過熱比例過高：Top 50 中超過 50% 處於短線過熱，市場偏熱，追高風險極大</p></div>
-
 <div class="tabs">
-  <button class="tab active" onclick="switchTab('top50')">🔥 Top 50 強勢</button>
+  <button class="tab active" onclick="switchTab('top50')">🔥 Top 50 表格</button>
   <button class="tab" onclick="switchTab('all')">📋 全部 ETF</button>
   <button class="tab" onclick="switchTab('logic')">📊 判斷邏輯</button>
 </div>
@@ -140,7 +1430,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
 <tr><th>#</th><th>代碼</th><th>中文名稱</th><th>幣別</th><th>收盤日</th><th>市價</th><th>淨值</th><th>1日%</th><th>1週%</th><th>1月%</th><th>3月%</th><th>6月%</th><th>1年%</th><th>波動率</th><th>Sharpe</th><th class="hide-mobile">資產類別</th><th class="hide-mobile">細分類</th><th>風險</th><th>操盤建議</th><th>判斷說明</th></tr>
 </thead>
 <tbody>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">1</td>
           <td data-label="代碼" class="code">SOXL</td>
           <td data-label="中文名稱" class="name">SOXL-每日三倍做多半導體指數型基金</td>
@@ -159,10 +1449,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">成熟股票</td>
           <td data-label="細分類" class="hide-mobile">科技產業股票</td>
           <td data-label="風險">非常積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+64.6%、1週急漲+22.8%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">2</td>
           <td data-label="代碼" class="code">USD</td>
           <td data-label="中文名稱" class="name">USD-ProShares二倍做多半導體指數型基金</td>
@@ -181,10 +1471,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">成熟股票</td>
           <td data-label="細分類" class="hide-mobile">科技產業股票</td>
           <td data-label="風險">非常積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+29.4%、1週急漲+16.7%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">3</td>
           <td data-label="代碼" class="code">1570.JP</td>
           <td data-label="中文名稱" class="name">1570.JT-NextFunds兩倍做多日經225交易所基金</td>
@@ -203,10 +1493,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">亞太股</td>
           <td data-label="細分類" class="hide-mobile">日本股票</td>
           <td data-label="風險">非常積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+22.9%、1週急漲+13.2%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">4</td>
           <td data-label="代碼" class="code">NVDL</td>
           <td data-label="中文名稱" class="name">NVDL-GraniteShares兩倍做多NVDA主動型ETF投/O</td>
@@ -225,10 +1515,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">成熟股票</td>
           <td data-label="細分類" class="hide-mobile">科技產業股票</td>
           <td data-label="風險">非常積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+14.9%、1週急漲+15.8%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">5</td>
           <td data-label="代碼" class="code">REMX</td>
           <td data-label="中文名稱" class="name">REMX-全球稀土及策略金屬產業指數型基金</td>
@@ -247,10 +1537,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">大宗商品</td>
           <td data-label="細分類" class="hide-mobile">天然資源股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+14.4%、1週急漲+10.6%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">6</td>
           <td data-label="代碼" class="code">EWY</td>
           <td data-label="中文名稱" class="name">EWY-MSCI南韓指數基金</td>
@@ -269,10 +1559,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">亞太股</td>
           <td data-label="細分類" class="hide-mobile">韓國股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+10.8%</td>
         </tr>
-        <tr class="signal-hold">
+        <tr>
           <td data-label="排名">7</td>
           <td data-label="代碼" class="code">NUGT</td>
           <td data-label="中文名稱" class="name">NUGT-兩倍做多黃金礦業指數型基金</td>
@@ -294,7 +1584,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="操盤建議" class="signal-hold">⚖️強勢持有</td>
           <td data-label="判斷說明" class="reason">1月穩漲+3.6%未過熱</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">8</td>
           <td data-label="代碼" class="code">1542.JP</td>
           <td data-label="中文名稱" class="name">1542.JT-三菱日聯日本實體白銀交易所交易基金</td>
@@ -313,10 +1603,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">-</td>
           <td data-label="細分類" class="hide-mobile">-</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1週急漲+10.7%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">9</td>
           <td data-label="代碼" class="code">2644.JP</td>
           <td data-label="中文名稱" class="name">2644.JT-GlobalX日本半導體指數基金</td>
@@ -335,10 +1625,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">亞太股</td>
           <td data-label="細分類" class="hide-mobile">日本股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+15.6%、1週急漲+9.9%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">10</td>
           <td data-label="代碼" class="code">UFO</td>
           <td data-label="中文名稱" class="name">UFO-Procure太空ETF</td>
@@ -357,10 +1647,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">-</td>
           <td data-label="細分類" class="hide-mobile">-</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+19.7%、1週急漲+9.0%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">11</td>
           <td data-label="代碼" class="code">URA</td>
           <td data-label="中文名稱" class="name">URA-全球鈾礦產業指數型基金</td>
@@ -379,10 +1669,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">大宗商品</td>
           <td data-label="細分類" class="hide-mobile">天然資源股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+10.7%、1週急漲+8.5%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">12</td>
           <td data-label="代碼" class="code">PBW</td>
           <td data-label="中文名稱" class="name">PBW-景順清潔能源指數型基金</td>
@@ -401,10 +1691,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">大宗商品</td>
           <td data-label="細分類" class="hide-mobile">能源股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1週急漲+8.6%</td>
         </tr>
-        <tr class="signal-hold">
+        <tr>
           <td data-label="排名">13</td>
           <td data-label="代碼" class="code">COPX</td>
           <td data-label="中文名稱" class="name">COPX-GlobalX銅礦業類股指數型基金</td>
@@ -426,7 +1716,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="操盤建議" class="signal-hold">⚖️強勢持有</td>
           <td data-label="判斷說明" class="reason">1月穩漲+9.6%未過熱</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">14</td>
           <td data-label="代碼" class="code">SOXX</td>
           <td data-label="中文名稱" class="name">SOXX-iShares半導體產業指數基金</td>
@@ -445,10 +1735,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">成熟股票</td>
           <td data-label="細分類" class="hide-mobile">科技產業股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+20.2%</td>
         </tr>
-        <tr class="signal-consolidate">
+        <tr>
           <td data-label="排名">15</td>
           <td data-label="代碼" class="code">SLV</td>
           <td data-label="中文名稱" class="name">SLV-安碩白銀基金</td>
@@ -467,10 +1757,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">大宗商品</td>
           <td data-label="細分類" class="hide-mobile">貴金屬股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-consolidate">🟡回調整理-觀察</td>
+          <td data-label="操盤建議" class="signal-consolidate">🟡回調觀察</td>
           <td data-label="判斷說明" class="reason">1月微跌-2.7%，1年漲+139.4%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">16</td>
           <td data-label="代碼" class="code">LIT</td>
           <td data-label="中文名稱" class="name">LIT-全球鋰礦產業指數型基金</td>
@@ -489,10 +1779,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">大宗商品</td>
           <td data-label="細分類" class="hide-mobile">天然資源股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+14.9%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">17</td>
           <td data-label="代碼" class="code">SMH</td>
           <td data-label="中文名稱" class="name">SMH-VanEck半導體產業指數型基金</td>
@@ -511,10 +1801,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">成熟股票</td>
           <td data-label="細分類" class="hide-mobile">科技產業股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+15.5%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">18</td>
           <td data-label="代碼" class="code">0053.TW</td>
           <td data-label="中文名稱" class="name">國內-元大台灣電子科技基金</td>
@@ -533,10 +1823,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">亞太股</td>
           <td data-label="細分類" class="hide-mobile">台灣股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+15.1%、1週急漲+8.6%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">19</td>
           <td data-label="代碼" class="code">006201.TW</td>
           <td data-label="中文名稱" class="name">國內-元大櫃買ETF傘型之富櫃５０基金</td>
@@ -555,10 +1845,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">亞太股</td>
           <td data-label="細分類" class="hide-mobile">台灣股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+25.3%、1週急漲+12.1%</td>
         </tr>
-        <tr class="signal-hold">
+        <tr>
           <td data-label="排名">20</td>
           <td data-label="代碼" class="code">BIB</td>
           <td data-label="中文名稱" class="name">BIB-兩倍做多那斯達克生技指數基金</td>
@@ -580,7 +1870,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="操盤建議" class="signal-hold">⚖️強勢持有</td>
           <td data-label="判斷說明" class="reason">1月穩漲+8.1%未過熱</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">21</td>
           <td data-label="代碼" class="code">0050.TW</td>
           <td data-label="中文名稱" class="name">國內-元大台灣卓越50基金</td>
@@ -599,10 +1889,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">亞太股</td>
           <td data-label="細分類" class="hide-mobile">台灣股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+12.4%</td>
         </tr>
-        <tr class="signal-hold">
+        <tr>
           <td data-label="排名">22</td>
           <td data-label="代碼" class="code">XME</td>
           <td data-label="中文名稱" class="name">XME-SPDR標準普爾金屬與礦產業指數基金</td>
@@ -624,7 +1914,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="操盤建議" class="signal-hold">⚖️強勢持有</td>
           <td data-label="判斷說明" class="reason">1月穩漲+5.0%未過熱</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">23</td>
           <td data-label="代碼" class="code">DAPP</td>
           <td data-label="中文名稱" class="name">DAPP-VanEck數位轉型交易所交易基金</td>
@@ -643,10 +1933,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">-</td>
           <td data-label="細分類" class="hide-mobile">-</td>
           <td data-label="風險">非常積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1週急漲+12.6%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">24</td>
           <td data-label="代碼" class="code">CNXT</td>
           <td data-label="中文名稱" class="name">CNXT-MV中國中小企業指數基金</td>
@@ -665,10 +1955,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">亞太股</td>
           <td data-label="細分類" class="hide-mobile">中國股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1週急漲+9.6%</td>
         </tr>
-        <tr class="signal-hold">
+        <tr>
           <td data-label="排名">25</td>
           <td data-label="代碼" class="code">GDXJ</td>
           <td data-label="中文名稱" class="name">GDXJ-小型黃金礦業指數型基金</td>
@@ -690,7 +1980,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="操盤建議" class="signal-hold">⚖️強勢持有</td>
           <td data-label="判斷說明" class="reason">1月穩漲+2.9%未過熱</td>
         </tr>
-        <tr class="signal-hold">
+        <tr>
           <td data-label="排名">26</td>
           <td data-label="代碼" class="code">NLR</td>
           <td data-label="中文名稱" class="name">NLR-VanEck鈾與核能ETF</td>
@@ -712,7 +2002,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="操盤建議" class="signal-hold">⚖️強勢持有</td>
           <td data-label="判斷說明" class="reason">1月穩漲+5.5%未過熱</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">27</td>
           <td data-label="代碼" class="code">ARKQ</td>
           <td data-label="中文名稱" class="name">ARKQ-ARK自主技術與機器人主動型交易所交易基金</td>
@@ -731,10 +2021,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">成熟股票</td>
           <td data-label="細分類" class="hide-mobile">科技產業股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1週急漲+8.5%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">28</td>
           <td data-label="代碼" class="code">UWM</td>
           <td data-label="中文名稱" class="name">UWM-二倍做多羅素2000指數基金</td>
@@ -753,10 +2043,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">成熟股票</td>
           <td data-label="細分類" class="hide-mobile">美國股票</td>
           <td data-label="風險">非常積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+17.1%</td>
         </tr>
-        <tr class="signal-hold">
+        <tr>
           <td data-label="排名">29</td>
           <td data-label="代碼" class="code">UCO</td>
           <td data-label="中文名稱" class="name">UCO-兩倍做多彭博原油指數基金</td>
@@ -778,7 +2068,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="操盤建議" class="signal-hold">⚖️強勢持有</td>
           <td data-label="判斷說明" class="reason">1月穩漲+6.9%未過熱</td>
         </tr>
-        <tr class="signal-hold">
+        <tr>
           <td data-label="排名">30</td>
           <td data-label="代碼" class="code">OIH</td>
           <td data-label="中文名稱" class="name">OIH-美國石油服務產業指數型基金</td>
@@ -800,7 +2090,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="操盤建議" class="signal-hold">⚖️強勢持有</td>
           <td data-label="判斷說明" class="reason">1月穩漲+9.4%未過熱</td>
         </tr>
-        <tr class="signal-pullback">
+        <tr>
           <td data-label="排名">31</td>
           <td data-label="代碼" class="code">TAN</td>
           <td data-label="中文名稱" class="name">TAN-GUGGENHEIM太陽能指數型基金</td>
@@ -819,10 +2109,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">大宗商品</td>
           <td data-label="細分類" class="hide-mobile">能源股票</td>
           <td data-label="風險">非常積極</td>
-          <td data-label="操盤建議" class="signal-pullback">🟢短線拉回-可買</td>
+          <td data-label="操盤建議" class="signal-pullback">🟢拉回可買</td>
           <td data-label="判斷說明" class="reason">1月回調-4.0%但1年仍強+95.8%</td>
         </tr>
-        <tr class="signal-pullback">
+        <tr>
           <td data-label="排名">32</td>
           <td data-label="代碼" class="code">ERX</td>
           <td data-label="中文名稱" class="name">ERX-兩倍做多美國能源類股指數型基金</td>
@@ -841,10 +2131,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">大宗商品</td>
           <td data-label="細分類" class="hide-mobile">能源股票</td>
           <td data-label="風險">非常積極</td>
-          <td data-label="操盤建議" class="signal-pullback">🟢短線拉回-可買</td>
+          <td data-label="操盤建議" class="signal-pullback">🟢拉回可買</td>
           <td data-label="判斷說明" class="reason">1月回調-4.0%但1年仍強+95.3%</td>
         </tr>
-        <tr class="signal-hold">
+        <tr>
           <td data-label="排名">33</td>
           <td data-label="代碼" class="code">006204.TW</td>
           <td data-label="中文名稱" class="name">國內-永豐臺灣加權ETF基金</td>
@@ -866,7 +2156,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="操盤建議" class="signal-hold">⚖️強勢持有</td>
           <td data-label="判斷說明" class="reason">1月穩漲+8.7%未過熱</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">34</td>
           <td data-label="代碼" class="code">QLD</td>
           <td data-label="中文名稱" class="name">QLD-兩倍做多那斯達克100指數基金</td>
@@ -885,10 +2175,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">成熟股票</td>
           <td data-label="細分類" class="hide-mobile">科技產業股票</td>
           <td data-label="風險">非常積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+13.0%、1週急漲+10.0%</td>
         </tr>
-        <tr class="signal-hold">
+        <tr>
           <td data-label="排名">35</td>
           <td data-label="代碼" class="code">1629.JP</td>
           <td data-label="中文名稱" class="name">1629.JT-日本商業及批發貿易類股交易所交易基金</td>
@@ -910,7 +2200,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="操盤建議" class="signal-hold">⚖️強勢持有</td>
           <td data-label="判斷說明" class="reason">1月穩漲+2.3%未過熱</td>
         </tr>
-        <tr class="signal-hold">
+        <tr>
           <td data-label="排名">36</td>
           <td data-label="代碼" class="code">ARKX</td>
           <td data-label="中文名稱" class="name">ARKX-ARK太空探索與創新主動型交易所交易基金</td>
@@ -932,7 +2222,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="操盤建議" class="signal-hold">⚖️強勢持有</td>
           <td data-label="判斷說明" class="reason">1月穩漲+7.1%未過熱</td>
         </tr>
-        <tr class="signal-hold">
+        <tr>
           <td data-label="排名">37</td>
           <td data-label="代碼" class="code">GDX</td>
           <td data-label="中文名稱" class="name">GDX-美國證交所金礦指數型基金</td>
@@ -954,7 +2244,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="操盤建議" class="signal-hold">⚖️強勢持有</td>
           <td data-label="判斷說明" class="reason">1月穩漲+3.5%未過熱</td>
         </tr>
-        <tr class="signal-hold">
+        <tr>
           <td data-label="排名">38</td>
           <td data-label="代碼" class="code">IEZ</td>
           <td data-label="中文名稱" class="name">IEZ-道瓊美國原油設備及服務指數基金</td>
@@ -976,7 +2266,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="操盤建議" class="signal-hold">⚖️強勢持有</td>
           <td data-label="判斷說明" class="reason">1月穩漲+9.7%未過熱</td>
         </tr>
-        <tr class="signal-hold">
+        <tr>
           <td data-label="排名">39</td>
           <td data-label="代碼" class="code">USO</td>
           <td data-label="中文名稱" class="name">USO-美國石油基金</td>
@@ -998,7 +2288,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="操盤建議" class="signal-hold">⚖️強勢持有</td>
           <td data-label="判斷說明" class="reason">1月穩漲+9.4%未過熱</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">40</td>
           <td data-label="代碼" class="code">EWT</td>
           <td data-label="中文名稱" class="name">EWT-MSCI台灣指數基金</td>
@@ -1017,10 +2307,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">亞太股</td>
           <td data-label="細分類" class="hide-mobile">台灣股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+12.9%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">41</td>
           <td data-label="代碼" class="code">DRIV</td>
           <td data-label="中文名稱" class="name">DRIV-GlobalX自動駕駛與電動車指數型基金</td>
@@ -1039,10 +2329,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">成熟股票</td>
           <td data-label="細分類" class="hide-mobile">科技產業股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+13.9%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">42</td>
           <td data-label="代碼" class="code">QTUM</td>
           <td data-label="中文名稱" class="name">QTUM-Defiance量子交易所交易基金</td>
@@ -1061,10 +2351,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">-</td>
           <td data-label="細分類" class="hide-mobile">-</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+12.6%</td>
         </tr>
-        <tr class="signal-hold">
+        <tr>
           <td data-label="排名">43</td>
           <td data-label="代碼" class="code">KARS</td>
           <td data-label="中文名稱" class="name">KARS-KraneShares電動車及未來移動指數型基金</td>
@@ -1086,7 +2376,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="操盤建議" class="signal-hold">⚖️強勢持有</td>
           <td data-label="判斷說明" class="reason">1月穩漲+9.4%未過熱</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">44</td>
           <td data-label="代碼" class="code">SLX</td>
           <td data-label="中文名稱" class="name">SLX-鋼鐵指數型基金</td>
@@ -1105,10 +2395,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">大宗商品</td>
           <td data-label="細分類" class="hide-mobile">天然資源股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+11.1%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">45</td>
           <td data-label="代碼" class="code">1321.JP</td>
           <td data-label="中文名稱" class="name">1321.JT-NextFunds日經225交易所交易基金</td>
@@ -1127,10 +2417,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">亞太股</td>
           <td data-label="細分類" class="hide-mobile">日本股票</td>
           <td data-label="風險">穩健</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+11.9%</td>
         </tr>
-        <tr class="signal-hold">
+        <tr>
           <td data-label="排名">46</td>
           <td data-label="代碼" class="code">BNO</td>
           <td data-label="中文名稱" class="name">BNO-布蘭特原油基金</td>
@@ -1152,7 +2442,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="操盤建議" class="signal-hold">⚖️強勢持有</td>
           <td data-label="判斷說明" class="reason">1月穩漲+3.0%未過熱</td>
         </tr>
-        <tr class="signal-pullback">
+        <tr>
           <td data-label="排名">47</td>
           <td data-label="代碼" class="code">UGL</td>
           <td data-label="中文名稱" class="name">UGL-兩倍做多黃金基金</td>
@@ -1171,10 +2461,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">大宗商品</td>
           <td data-label="細分類" class="hide-mobile">貴金屬股票</td>
           <td data-label="風險">非常積極</td>
-          <td data-label="操盤建議" class="signal-pullback">🟢短線拉回-可買</td>
+          <td data-label="操盤建議" class="signal-pullback">🟢拉回可買</td>
           <td data-label="判斷說明" class="reason">1月回調-10.3%但1年仍強+77.1%</td>
         </tr>
-        <tr class="signal-hot">
+        <tr>
           <td data-label="排名">48</td>
           <td data-label="代碼" class="code">EWZ</td>
           <td data-label="中文名稱" class="name">EWZ-MSCI巴西指數型基金</td>
@@ -1193,10 +2483,10 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">新興市場股票</td>
           <td data-label="細分類" class="hide-mobile">拉丁美洲股票</td>
           <td data-label="風險">積極</td>
-          <td data-label="操盤建議" class="signal-hot">🔥短線過熱-賣出</td>
+          <td data-label="操盤建議" class="signal-hot">🔥短線過熱</td>
           <td data-label="判斷說明" class="reason">1月大漲+13.5%</td>
         </tr>
-        <tr class="signal-hold">
+        <tr>
           <td data-label="排名">49</td>
           <td data-label="代碼" class="code">NVDY</td>
           <td data-label="中文名稱" class="name">NVDY-YieldMaxNVDA期權收益策略主動型交易所交易基</td>
@@ -1218,7 +2508,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="操盤建議" class="signal-hold">⚖️強勢持有</td>
           <td data-label="判斷說明" class="reason">1月穩漲+3.7%未過熱</td>
         </tr>
-        <tr class="signal-pullback">
+        <tr>
           <td data-label="排名">50</td>
           <td data-label="代碼" class="code">1699.JP</td>
           <td data-label="中文名稱" class="name">1699.JT-NextFunds野村原油指數交易所交易基金</td>
@@ -1237,7 +2527,7 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
           <td data-label="資產類別" class="hide-mobile">-</td>
           <td data-label="細分類" class="hide-mobile">-</td>
           <td data-label="風險">非常積極</td>
-          <td data-label="操盤建議" class="signal-pullback">🟢短線拉回-可買</td>
+          <td data-label="操盤建議" class="signal-pullback">🟢拉回可買</td>
           <td data-label="判斷說明" class="reason">1月回調-4.7%但1年仍強+74.2%</td>
         </tr>
 </tbody>
@@ -6604,14 +7894,16 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
 </div>
 
 <div id="logic" class="tab-content">
-<div class="alert-box">
-<h3>📊 操盤建議判斷邏輯</h3>
-<table style="width:100%;margin-top:12px">
-<tr><th>訊號</th><th>觸發條件</th><th>判斷邏輯</th><th>操作建議</th></tr>
+<div style="background:#f6f8fa;border-radius:12px;padding:20px;border:1px solid #d0d7de;margin:16px 0">
+<h3 style="margin-bottom:16px;color:#1f2328">📊 操盤建議判斷邏輯</h3>
+<table style="width:100%;margin-top:12px;background:#fff;border-radius:8px;overflow:hidden">
+<thead><tr><th>訊號</th><th>觸發條件</th><th>判斷邏輯</th><th>操作建議</th></tr></thead>
+<tbody>
 <tr><td class="signal-hot">🔥短線過熱</td><td>近1月漲幅>10% 或 近1週漲幅>8%</td><td>短線漲幅過大，乖離均線，獲利了結壓力升溫</td><td>已持有：分批減碼/設停利；未持有：勿追高</td></tr>
 <tr><td class="signal-pullback">🟢拉回可買</td><td>近1月跌幅>3% 且 近1年漲幅>20%</td><td>中長期趨勢仍強，短線出現健康回調</td><td>可分批買進，設停損於支撐位下方</td></tr>
 <tr><td class="signal-consolidate">🟡回調觀察</td><td>近1月微跌 且 近1年漲幅>30%</td><td>強勢標的進入整理期，方向未明</td><td>觀察支撐是否有效，等止穩訊號再進場</td></tr>
 <tr><td class="signal-hold">⚖️強勢持有</td><td>未觸發上述條件</td><td>趨勢穩健向上，未出現過熱或異常回調</td><td>續持觀察，追蹤是否轉為過熱</td></tr>
+</tbody>
 </table>
 </div>
 </div>
@@ -6623,12 +7915,20 @@ td.reason{color:#8b949e;font-size:.75rem;max-width:200px;white-space:normal}
 </div>
 
 <script>
+function showSignal(cls){
+  document.querySelectorAll('.signal-tab').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.detail-panel').forEach(el=>el.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById('detail-'+cls).classList.add('active');
+}
 function switchTab(id){
   document.querySelectorAll('.tab-content').forEach(el=>el.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.tabs .tab').forEach(el=>el.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   event.target.classList.add('active');
 }
+// Default show hot
+document.getElementById('detail-hot').classList.add('active');
 </script>
 </body>
 </html>
