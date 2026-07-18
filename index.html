@@ -65,19 +65,22 @@
     .match { padding:3px 6px; color:#35516f; border-radius:5px; background:#edf3fb; font-size:.7rem; font-weight:700; }
     .empty { padding:44px; color:var(--muted); text-align:center; }
     .footnote { margin:14px 4px 0; color:var(--muted); font-size:.76rem; line-height:1.55; }
-    .workspace-nav { width:min(1404px, calc(100% - 36px)); margin:14px auto 0; padding:9px 12px; display:flex; align-items:center; justify-content:space-between; gap:10px; border:1px solid var(--line); border-radius:12px; background:var(--panel); box-shadow:0 8px 25px rgba(29,40,64,.05); }
-    .workspace-nav__brand { color:var(--brand); font-size:.76rem; font-weight:800; letter-spacing:.08em; white-space:nowrap; }
-    .workspace-nav__links { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:4px; }
-    .workspace-nav a { padding:6px 8px; color:#526176; border-radius:7px; font-size:.75rem; font-weight:750; text-decoration:none; }
-    .workspace-nav a:hover, .workspace-nav a.is-active { color:#fff; background:var(--brand); }
+    .workspace-nav { width:min(1404px, calc(100% - 36px)); margin:14px auto 0; padding:6px; display:flex; align-items:center; justify-content:space-between; gap:10px; border:1px solid var(--line); border-radius:15px; background:linear-gradient(135deg,#fff,#f5f8ff); box-shadow:0 12px 28px rgba(29,40,64,.08); }
+    .workspace-nav__brand { display:flex; align-items:center; gap:8px; min-width:max-content; padding:4px 7px; color:var(--brand); text-decoration:none; }
+    .workspace-nav__mark { display:grid; width:29px; height:29px; place-items:center; border-radius:9px; color:#fff; background:linear-gradient(135deg,var(--brand),#6d86eb); box-shadow:0 5px 11px rgba(36,87,214,.22); font-size:.75rem; }
+    .workspace-nav__brand-copy { display:grid; line-height:1.05; } .workspace-nav__brand strong { font-size:.75rem; letter-spacing:.06em; } .workspace-nav__brand small { margin-top:3px; color:var(--muted); font-size:.56rem; font-weight:700; letter-spacing:.06em; }
+    .workspace-nav__links { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:3px; padding:3px; border:1px solid #e0e7f0; border-radius:10px; background:#eef3fa; }
+    .workspace-nav__links a { display:inline-flex; align-items:center; gap:4px; padding:6px 8px; color:#526176; border-radius:7px; font-size:.72rem; font-weight:750; text-decoration:none; transition:transform .16s ease,box-shadow .16s ease,background .16s ease; }
+    .workspace-nav__links a:hover { color:var(--brand); background:#fff; transform:translateY(-1px); } .workspace-nav__links a.is-active { color:#fff; background:linear-gradient(135deg,var(--brand),#5a76e3); box-shadow:0 5px 11px rgba(36,87,214,.22); }
+    .workspace-nav__icon { display:inline-grid; min-width:13px; place-items:center; font-size:.61rem; font-weight:850; }
     @media (max-width:1050px) { .toolbar { grid-template-columns:repeat(3,1fr); } .scenario-grid { grid-template-columns:repeat(2,1fr); } .hero { flex-direction:column; } .source { max-width:none; } }
-    @media (max-width:650px) { .page { padding:16px 10px 28px; } .workspace-nav { width:calc(100% - 20px); align-items:flex-start; flex-direction:column; } .workspace-nav__links { justify-content:flex-start; } .toolbar { grid-template-columns:1fr 1fr; } .toolbar .search-field { grid-column:1/-1; } .scenario-grid { grid-template-columns:1fr; } .scenario { min-height:72px; } .section-head { align-items:flex-start; flex-direction:column; gap:4px; } }
+    @media (max-width:650px) { .page { padding:16px 10px 28px; } .workspace-nav { width:calc(100% - 20px); align-items:stretch; flex-direction:column; } .workspace-nav__links { justify-content:space-between; } .workspace-nav__links a { flex:1 1 auto; justify-content:center; padding:6px 4px; font-size:.67rem; } .workspace-nav__brand small { display:none; } .toolbar { grid-template-columns:1fr 1fr; } .toolbar .search-field { grid-column:1/-1; } .scenario-grid { grid-template-columns:1fr; } .scenario { min-height:72px; } .section-head { align-items:flex-start; flex-direction:column; gap:4px; } }
   </style>
 </head>
 <body>
   <nav class="workspace-nav" aria-label="投資工具導覽">
-    <span class="workspace-nav__brand">投資工具中心</span>
-    <span class="workspace-nav__links"><a href="https://anzuanzu.github.io/tools/">工具總覽</a><a href="https://anzuanzu.github.io/BondAndFund/">債券／基金質借</a><a href="https://anzuanzu.github.io/fcneliAI/">FCN 標的雷達</a><a href="https://anzuanzu.github.io/insurance-financing-v2/">保單融資試算</a><a class="is-active" aria-current="page" href="https://anzuanzu.github.io/Top50ETF/">ETF 技術掃描</a></span>
+    <a class="workspace-nav__brand" href="https://anzuanzu.github.io/tools/"><span class="workspace-nav__mark">✦</span><span class="workspace-nav__brand-copy"><strong>投資工具中心</strong><small>RESEARCH · SIMULATE</small></span></a>
+    <span class="workspace-nav__links"><a href="https://anzuanzu.github.io/tools/"><span class="workspace-nav__icon">⌂</span>工具總覽</a><a href="https://anzuanzu.github.io/BondAndFund/"><span class="workspace-nav__icon">◎</span>債券／基金質借</a><a href="https://anzuanzu.github.io/fcneliAI/"><span class="workspace-nav__icon">FCN</span>標的雷達</a><a href="https://anzuanzu.github.io/insurance-financing-v2/"><span class="workspace-nav__icon">◈</span>保單融資試算</a><a class="is-active" aria-current="page" href="https://anzuanzu.github.io/Top50ETF/"><span class="workspace-nav__icon">ETF</span>技術掃描</a></span>
   </nav>
   <main class="page">
     <header class="hero">
