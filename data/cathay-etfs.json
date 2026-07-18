@@ -1,0 +1,2503 @@
+{
+  "source": "https://www.cathaybk.com.tw/cathaybk/service/newwealth/search/search.asmx/ETFSearch",
+  "syncedAt": "2026-07-18T02:42:08.062Z",
+  "count": 312,
+  "items": [
+    {
+      "symbol": "HKEX:2800",
+      "ticker": "2800.HK",
+      "label": "2800.HK-盈富基金(港幣)",
+      "market": "HK",
+      "cathayExchange": "HKE",
+      "bankFundId": "00991315"
+    },
+    {
+      "symbol": "HKEX:2809",
+      "ticker": "2809.HK",
+      "label": "2809.HK-中國潔淨能源指數型基金",
+      "market": "HK",
+      "cathayExchange": "HKE",
+      "bankFundId": "00991469"
+    },
+    {
+      "symbol": "HKEX:2822",
+      "ticker": "2822.HK",
+      "label": "2822.HK-南方東英富時中國A50指數型基金",
+      "market": "HK",
+      "cathayExchange": "HKE",
+      "bankFundId": "00991396"
+    },
+    {
+      "symbol": "HKEX:2823",
+      "ticker": "2823.HK",
+      "label": "2823.HK-富時中國A50指數型基金",
+      "market": "HK",
+      "cathayExchange": "HKE",
+      "bankFundId": "00991039"
+    },
+    {
+      "symbol": "HKEX:2828",
+      "ticker": "2828.HK",
+      "label": "2828-恆生H股指數股票基金",
+      "market": "HK",
+      "cathayExchange": "HKE",
+      "bankFundId": "00991306"
+    },
+    {
+      "symbol": "HKEX:2845",
+      "ticker": "2845.HK",
+      "label": "2845.HK-中國電動車及電池指數型基金",
+      "market": "HK",
+      "cathayExchange": "HKE",
+      "bankFundId": "00991470"
+    },
+    {
+      "symbol": "HKEX:3067",
+      "ticker": "3067.HK",
+      "label": "3067.HK-安碩恒生科技指數型基金",
+      "market": "HK",
+      "cathayExchange": "HKE",
+      "bankFundId": "00991502"
+    },
+    {
+      "symbol": "HKEX:3188",
+      "ticker": "3188.HK",
+      "label": "3188-華夏滬深300指數基金(港幣)",
+      "market": "HK",
+      "cathayExchange": "HKE",
+      "bankFundId": "00991307"
+    },
+    {
+      "symbol": "HKEX:82822",
+      "ticker": "82822.HK",
+      "label": "82822-南方東英新華富時中國A50指數基金",
+      "market": "HK",
+      "cathayExchange": "HKE",
+      "bankFundId": "00991167"
+    },
+    {
+      "symbol": "HKEX:83118",
+      "ticker": "83118.HK",
+      "label": "83118-嘉實MSCI中國A股指數型基金",
+      "market": "HK",
+      "cathayExchange": "HKE",
+      "bankFundId": "00991181"
+    },
+    {
+      "symbol": "HKEX:83188",
+      "ticker": "83188.HK",
+      "label": "83188-華夏滬深300指數基金(人民幣)",
+      "market": "HK",
+      "cathayExchange": "HKE",
+      "bankFundId": "00991169"
+    },
+    {
+      "symbol": "HKEX:83199",
+      "ticker": "83199.HK",
+      "label": "83199-南方東英富時中國國債及政策性銀行債券指數型",
+      "market": "HK",
+      "cathayExchange": "HKE",
+      "bankFundId": "00991207"
+    },
+    {
+      "symbol": "TSE:1306",
+      "ticker": "1306.JP",
+      "label": "1306.JT-NextFunds東證股價指數交易所交易基金",
+      "market": "JP",
+      "cathayExchange": "TOKYO",
+      "bankFundId": "00991465"
+    },
+    {
+      "symbol": "TSE:1321",
+      "ticker": "1321.JP",
+      "label": "1321.JT-NextFunds日經225交易所交易基金",
+      "market": "JP",
+      "cathayExchange": "TOKYO",
+      "bankFundId": "00991466"
+    },
+    {
+      "symbol": "TSE:1343",
+      "ticker": "1343.JP",
+      "label": "1343-東證REIT指數型基金",
+      "market": "JP",
+      "cathayExchange": "TOKYO",
+      "bankFundId": "00991183"
+    },
+    {
+      "symbol": "TSE:1476",
+      "ticker": "1476.JP",
+      "label": "1476.JT-iShares核心日本REIT指數型基金",
+      "market": "JP",
+      "cathayExchange": "TOKYO",
+      "bankFundId": "00991464"
+    },
+    {
+      "symbol": "TSE:1482",
+      "ticker": "1482.JP",
+      "label": "1482.JT-iShares7-10年期美國公債匯率避險指數基金",
+      "market": "JP",
+      "cathayExchange": "TOKYO",
+      "bankFundId": "00991481"
+    },
+    {
+      "symbol": "TSE:1488",
+      "ticker": "1488.JP",
+      "label": "1488.JP-iFreeETF東京證券交易所REIT ETF",
+      "market": "JP",
+      "cathayExchange": "TOKYO",
+      "bankFundId": "00991517"
+    },
+    {
+      "symbol": "TSE:1540",
+      "ticker": "1540.JP",
+      "label": "1540.JT-三菱日聯日本實體黃金交易所交易基金",
+      "market": "JP",
+      "cathayExchange": "TOKYO",
+      "bankFundId": "00991493"
+    },
+    {
+      "symbol": "TSE:1542",
+      "ticker": "1542.JP",
+      "label": "1542.JT-三菱日聯日本實體白銀交易所交易基金",
+      "market": "JP",
+      "cathayExchange": "TOKYO",
+      "bankFundId": "00991494"
+    },
+    {
+      "symbol": "TSE:1545",
+      "ticker": "1545.JP",
+      "label": "1545.JT-NEXTFUNDS那斯達克100未避險指數基金",
+      "market": "JP",
+      "cathayExchange": "TOKYO",
+      "bankFundId": "00991485"
+    },
+    {
+      "symbol": "TSE:1570",
+      "ticker": "1570.JP",
+      "label": "1570.JT-NextFunds兩倍做多日經225交易所基金-限專",
+      "market": "JP",
+      "cathayExchange": "TOKYO",
+      "bankFundId": "00991467"
+    },
+    {
+      "symbol": "TSE:1615",
+      "ticker": "1615.JP",
+      "label": "1615.JP-NEXT FUNDS東證指數銀行類 ETF",
+      "market": "JP",
+      "cathayExchange": "TOKYO",
+      "bankFundId": "00991526"
+    },
+    {
+      "symbol": "TSE:1629",
+      "ticker": "1629.JP",
+      "label": "1629.JT-日本商業及批發貿易類股交易所交易基金",
+      "market": "JP",
+      "cathayExchange": "TOKYO",
+      "bankFundId": "00991471"
+    },
+    {
+      "symbol": "TSE:1655",
+      "ticker": "1655.JP",
+      "label": "1655.JT-iShares標普500指數基金(日幣計價)",
+      "market": "JP",
+      "cathayExchange": "TOKYO",
+      "bankFundId": "00991486"
+    },
+    {
+      "symbol": "TSE:1699",
+      "ticker": "1699.JP",
+      "label": "1699.JT-NextFunds野村原油指數交易所交易基金",
+      "market": "JP",
+      "cathayExchange": "TOKYO",
+      "bankFundId": "00991495"
+    },
+    {
+      "symbol": "TSE:2521",
+      "ticker": "2521.JP",
+      "label": "2521.JT-Nikko標普500匯率避險指數基金",
+      "market": "JP",
+      "cathayExchange": "TOKYO",
+      "bankFundId": "00991492"
+    },
+    {
+      "symbol": "TSE:2621",
+      "ticker": "2621.JP",
+      "label": "2621.JT-iShares20年期以上美國公債匯率避險指數基",
+      "market": "JP",
+      "cathayExchange": "TOKYO",
+      "bankFundId": "00991482"
+    },
+    {
+      "symbol": "TSE:2644",
+      "ticker": "2644.JP",
+      "label": "2644.JT-GlobalX日本半導體指數基金",
+      "market": "JP",
+      "cathayExchange": "TOKYO",
+      "bankFundId": "00991484"
+    },
+    {
+      "symbol": "TWSE:0050",
+      "ticker": "0050.TW",
+      "label": "國內-元大台灣卓越50基金",
+      "market": "TW",
+      "cathayExchange": "TWSE",
+      "bankFundId": "12050021"
+    },
+    {
+      "symbol": "TWSE:0053",
+      "ticker": "0053.TW",
+      "label": "國內-元大台灣電子科技基金",
+      "market": "TW",
+      "cathayExchange": "TWSE",
+      "bankFundId": "12050005"
+    },
+    {
+      "symbol": "TWSE:0055",
+      "ticker": "0055.TW",
+      "label": "國內-元大台灣金融基金",
+      "market": "TW",
+      "cathayExchange": "TWSE",
+      "bankFundId": "12050003"
+    },
+    {
+      "symbol": "TWSE:0056",
+      "ticker": "0056.TW",
+      "label": "國內-元大台灣高股息基金",
+      "market": "TW",
+      "cathayExchange": "TWSE",
+      "bankFundId": "12050007"
+    },
+    {
+      "symbol": "TWSE:0061",
+      "ticker": "0061.TW",
+      "label": "國內-元大標智滬深300基金",
+      "market": "TW",
+      "cathayExchange": "TWSE",
+      "bankFundId": "12050019"
+    },
+    {
+      "symbol": "TPEX:006201",
+      "ticker": "006201.TW",
+      "label": "國內-元大櫃買ETF傘型之富櫃５０基金",
+      "market": "TW",
+      "cathayExchange": "OTC",
+      "bankFundId": "12050013"
+    },
+    {
+      "symbol": "TWSE:006204",
+      "ticker": "006204.TW",
+      "label": "國內-永豐臺灣加權ETF基金",
+      "market": "TW",
+      "cathayExchange": "TWSE",
+      "bankFundId": "12070001"
+    },
+    {
+      "symbol": "TWSE:006205",
+      "ticker": "006205.TW",
+      "label": "國內-富邦上証180基金",
+      "market": "TW",
+      "cathayExchange": "TWSE",
+      "bankFundId": "12060001"
+    },
+    {
+      "symbol": "TWSE:006206",
+      "ticker": "006206.TW",
+      "label": "國內-元大上證50基金",
+      "market": "TW",
+      "cathayExchange": "TWSE",
+      "bankFundId": "12050017"
+    },
+    {
+      "symbol": "TWSE:00636",
+      "ticker": "00636.TW",
+      "label": "國內-國泰富時中國A50基金",
+      "market": "TW",
+      "cathayExchange": "TWSE",
+      "bankFundId": "12080001"
+    },
+    {
+      "symbol": "TPEX:00687B",
+      "ticker": "00687B.TW",
+      "label": "國內-00687B國泰20年期以上美國公債指數基金",
+      "market": "TW",
+      "cathayExchange": "OTC",
+      "bankFundId": "12080007"
+    },
+    {
+      "symbol": "TPEX:00761B",
+      "ticker": "00761B.TW",
+      "label": "國內-00761B國泰10年期以上A等級美元公司債券ETF基金",
+      "market": "TW",
+      "cathayExchange": "OTC",
+      "bankFundId": "12080009"
+    },
+    {
+      "symbol": "TWSE:00878",
+      "ticker": "00878.TW",
+      "label": "國內-00878國泰台灣ESG永續高股息ETF基金",
+      "market": "TW",
+      "cathayExchange": "TWSE",
+      "bankFundId": "12080005"
+    },
+    {
+      "symbol": "TWSE:00881",
+      "ticker": "00881.TW",
+      "label": "國內-00881國泰台灣科技龍頭ETF基金",
+      "market": "TW",
+      "cathayExchange": "TWSE",
+      "bankFundId": "12080011"
+    },
+    {
+      "symbol": "TWSE:00922",
+      "ticker": "00922.TW",
+      "label": "國內-00922國泰台灣領袖50ETF",
+      "market": "TW",
+      "cathayExchange": "TWSE",
+      "bankFundId": "12080013"
+    },
+    {
+      "symbol": "TPEX:00933B",
+      "ticker": "00933B.TW",
+      "label": "國內-國泰10年以上投資級金融債券ETF基金",
+      "market": "TW",
+      "cathayExchange": "OTC",
+      "bankFundId": "12080003"
+    },
+    {
+      "symbol": "TWSE:00984A",
+      "ticker": "00984A.TW",
+      "label": "國內-安聯台灣高息成長主動式ETF基金",
+      "market": "TW",
+      "cathayExchange": "TWSE",
+      "bankFundId": "12090001"
+    },
+    {
+      "symbol": "NASDAQ:AAXJ",
+      "ticker": "AAXJ",
+      "label": "AAXJ-iShares MSCI全亞洲不含日本ETF",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991507"
+    },
+    {
+      "symbol": "NASDAQ:ACWI",
+      "ticker": "ACWI",
+      "label": "ACWI-MSCI全世界指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991203"
+    },
+    {
+      "symbol": "AMEX:AMLP",
+      "ticker": "AMLP",
+      "label": "AMLP-能源基礎設施有限合夥指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991349"
+    },
+    {
+      "symbol": "AMEX:AOA",
+      "ticker": "AOA",
+      "label": "AOA-iShares積極配置平衡型指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991373"
+    },
+    {
+      "symbol": "AMEX:AOM",
+      "ticker": "AOM",
+      "label": "AOM-iShares穩健配置平衡型指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991374"
+    },
+    {
+      "symbol": "CBOE:ARKF",
+      "ticker": "ARKF",
+      "label": "ARKF-ARK金融科技創新主動型交易所交易基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991429"
+    },
+    {
+      "symbol": "CBOE:ARKG",
+      "ticker": "ARKG",
+      "label": "ARKG-ARK生物基因科技革新主動型交易所交易基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991428"
+    },
+    {
+      "symbol": "CBOE:ARKK",
+      "ticker": "ARKK",
+      "label": "ARKK-ARK創新主動型交易所交易基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991417"
+    },
+    {
+      "symbol": "CBOE:ARKQ",
+      "ticker": "ARKQ",
+      "label": "ARKQ-ARK自主技術與機器人主動型交易所交易基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991433"
+    },
+    {
+      "symbol": "CBOE:ARKW",
+      "ticker": "ARKW",
+      "label": "ARKW-ARK次世代網路主動型交易所交易基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991418"
+    },
+    {
+      "symbol": "CBOE:ARKX",
+      "ticker": "ARKX",
+      "label": "ARKX-ARK太空探索與創新主動型交易所交易基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991440"
+    },
+    {
+      "symbol": "AMEX:ASHR",
+      "ticker": "ASHR",
+      "label": "ASHR-德銀滬深300中國A股指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991316"
+    },
+    {
+      "symbol": "AMEX:AWAY",
+      "ticker": "AWAY",
+      "label": "AWAY-Amplify旅遊科技指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991446"
+    },
+    {
+      "symbol": "AMEX:BAB",
+      "ticker": "BAB",
+      "label": "BAB-Invesco應稅市政債券指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991479"
+    },
+    {
+      "symbol": "CBOE:BALI",
+      "ticker": "BALI",
+      "label": "BALI-iShares美國大型股優選收益主動型ETF",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991533"
+    },
+    {
+      "symbol": "NASDAQ:BIB",
+      "ticker": "BIB",
+      "label": "BIB-兩倍做多那斯達克生技指數基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991157"
+    },
+    {
+      "symbol": "AMEX:BIL",
+      "ticker": "BIL",
+      "label": "BIL-SPDR彭博1-3月美國國庫券ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991478"
+    },
+    {
+      "symbol": "NASDAQ:BIS",
+      "ticker": "BIS",
+      "label": "BIS-二倍放空那斯達克生技類股指數基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991211"
+    },
+    {
+      "symbol": "AMEX:BNO",
+      "ticker": "BNO",
+      "label": "BNO-布蘭特原油基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991177"
+    },
+    {
+      "symbol": "NASDAQ:BOTZ",
+      "ticker": "BOTZ",
+      "label": "BOTZ-Global-X機器人與人工智慧指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991391"
+    },
+    {
+      "symbol": "AMEX:BRF",
+      "ticker": "BRF",
+      "label": "BRF-巴西小型股指數ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991305"
+    },
+    {
+      "symbol": "AMEX:BZQ",
+      "ticker": "BZQ",
+      "label": "BZQ-二倍放空MSCI巴西指數型基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991339"
+    },
+    {
+      "symbol": "AMEX:CAF",
+      "ticker": "CAF",
+      "label": "CAF-摩根士丹利中國A股ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991302"
+    },
+    {
+      "symbol": "AMEX:CHIQ",
+      "ticker": "CHIQ",
+      "label": "CHIQ-中國消費類股指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991393"
+    },
+    {
+      "symbol": "AMEX:CNXT",
+      "ticker": "CNXT",
+      "label": "CNXT-MV中國中小企業指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991314"
+    },
+    {
+      "symbol": "AMEX:COPX",
+      "ticker": "COPX",
+      "label": "COPX-GlobalX銅礦業類股指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991437"
+    },
+    {
+      "symbol": "AMEX:CORN",
+      "ticker": "CORN",
+      "label": "CORN-玉米期貨基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991143"
+    },
+    {
+      "symbol": "CBOE:COWZ",
+      "ticker": "COWZ",
+      "label": "COWZ-美國金牛100指數型基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991474"
+    },
+    {
+      "symbol": "AMEX:CQQQ",
+      "ticker": "CQQQ",
+      "label": "CQQQ-Invesco中國科技類股指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991411"
+    },
+    {
+      "symbol": "NASDAQ:DAPP",
+      "ticker": "DAPP",
+      "label": "DAPP-VanEck數位轉型交易所交易基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991497"
+    },
+    {
+      "symbol": "AMEX:DBA",
+      "ticker": "DBA",
+      "label": "DBA-德意志農產品指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991033"
+    },
+    {
+      "symbol": "AMEX:DBC",
+      "ticker": "DBC",
+      "label": "DBC-德意志商品指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991035"
+    },
+    {
+      "symbol": "AMEX:DBEM",
+      "ticker": "DBEM",
+      "label": "DBEM-MSCI新興市場匯率避險股票指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991361"
+    },
+    {
+      "symbol": "AMEX:DIA",
+      "ticker": "DIA",
+      "label": "DIA-道瓊工業指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991005"
+    },
+    {
+      "symbol": "AMEX:DOG",
+      "ticker": "DOG",
+      "label": "DOG-看空道瓊30指數基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991107"
+    },
+    {
+      "symbol": "CBOE:DRAM",
+      "ticker": "DRAM",
+      "label": "DRAM-Roundhill記憶體主動型ETF",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991524"
+    },
+    {
+      "symbol": "NASDAQ:DRIV",
+      "ticker": "DRIV",
+      "label": "DRIV-GlobalX自動駕駛與電動車指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991435"
+    },
+    {
+      "symbol": "AMEX:DUST",
+      "ticker": "DUST",
+      "label": "DUST-兩倍做空黃金礦業指數型基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991340"
+    },
+    {
+      "symbol": "NASDAQ:DVY",
+      "ticker": "DVY",
+      "label": "DVY-道瓊精選高股利指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991175"
+    },
+    {
+      "symbol": "AMEX:DWX",
+      "ticker": "DWX",
+      "label": "DWX-標普國際高股利指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991380"
+    },
+    {
+      "symbol": "AMEX:DXD",
+      "ticker": "DXD",
+      "label": "DXD-ProShares兩倍放空道瓊30指數基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991324"
+    },
+    {
+      "symbol": "AMEX:DXJ",
+      "ticker": "DXJ",
+      "label": "DXJ-WisdomTree日本股票匯率避險指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991197"
+    },
+    {
+      "symbol": "AMEX:ECON",
+      "ticker": "ECON",
+      "label": "ECON-研究增強型新興經濟體指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991384"
+    },
+    {
+      "symbol": "AMEX:EEM",
+      "ticker": "EEM",
+      "label": "EEM-MSCI新興市場指數股票型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991013"
+    },
+    {
+      "symbol": "AMEX:EFA",
+      "ticker": "EFA",
+      "label": "EFA-MSCI歐澳遠東指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991171"
+    },
+    {
+      "symbol": "NASDAQ:EMB",
+      "ticker": "EMB",
+      "label": "EMB-摩根美元新興市場債券指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991093"
+    },
+    {
+      "symbol": "AMEX:EMLC",
+      "ticker": "EMLC",
+      "label": "EMLC-新興市場當地貨幣債券指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991386"
+    },
+    {
+      "symbol": "AMEX:EMQQ",
+      "ticker": "EMQQ",
+      "label": "EMQQ-新興市場網路指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991395"
+    },
+    {
+      "symbol": "NASDAQ:EMXC",
+      "ticker": "EMXC",
+      "label": "EMXC-iSharesMSCI新興市場中國除外指數基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991483"
+    },
+    {
+      "symbol": "AMEX:EPHE",
+      "ticker": "EPHE",
+      "label": "EPHE-MSCI菲律賓指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991173"
+    },
+    {
+      "symbol": "AMEX:EPI",
+      "ticker": "EPI",
+      "label": "EPI-印度收益指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991029"
+    },
+    {
+      "symbol": "AMEX:EPP",
+      "ticker": "EPP",
+      "label": "EPP-MSCI亞太市場指數股票型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991015"
+    },
+    {
+      "symbol": "AMEX:EPV",
+      "ticker": "EPV",
+      "label": "EPV-兩倍看空MSCI歐洲指數基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991111"
+    },
+    {
+      "symbol": "AMEX:ERX",
+      "ticker": "ERX",
+      "label": "ERX-兩倍做多美國能源類股指數型基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991345"
+    },
+    {
+      "symbol": "AMEX:ERY",
+      "ticker": "ERY",
+      "label": "ERY-兩倍放空美國能源類股指數型基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991346"
+    },
+    {
+      "symbol": "NASDAQ:ESGE",
+      "ticker": "ESGE",
+      "label": "ESGE-iShares新興市場ESG聚焦指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991414"
+    },
+    {
+      "symbol": "CBOE:ESGV",
+      "ticker": "ESGV",
+      "label": "ESGV-Vanguard美股ESG指數型基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991438"
+    },
+    {
+      "symbol": "NASDAQ:ESPO",
+      "ticker": "ESPO",
+      "label": "ESPO-VanEck視頻遊戲及電競指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991405"
+    },
+    {
+      "symbol": "NASDAQ:EUFN",
+      "ticker": "EUFN",
+      "label": "EUFN-iSharesMSCI歐洲金融指數基",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991342"
+    },
+    {
+      "symbol": "CBOE:EUV",
+      "ticker": "EUV",
+      "label": "EUV-Corgi微影與半導體光子學主動型ETF",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991530"
+    },
+    {
+      "symbol": "AMEX:EWA",
+      "ticker": "EWA",
+      "label": "EWA-MSCI澳洲指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991101"
+    },
+    {
+      "symbol": "AMEX:EWG",
+      "ticker": "EWG",
+      "label": "EWG-MSCI德國指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991103"
+    },
+    {
+      "symbol": "AMEX:EWH",
+      "ticker": "EWH",
+      "label": "EWH-MSCI香港指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991317"
+    },
+    {
+      "symbol": "AMEX:EWI",
+      "ticker": "EWI",
+      "label": "EWI-MSCI義大利指數ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991209"
+    },
+    {
+      "symbol": "AMEX:EWJ",
+      "ticker": "EWJ",
+      "label": "EWJ-MSCI日本指數股票型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991009"
+    },
+    {
+      "symbol": "AMEX:EWQ",
+      "ticker": "EWQ",
+      "label": "EWQ-MSCI法國指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991383"
+    },
+    {
+      "symbol": "AMEX:EWS",
+      "ticker": "EWS",
+      "label": "EWS-iSharesMSCI新加坡指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991424"
+    },
+    {
+      "symbol": "AMEX:EWT",
+      "ticker": "EWT",
+      "label": "EWT-MSCI台灣指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991159"
+    },
+    {
+      "symbol": "AMEX:EWW",
+      "ticker": "EWW",
+      "label": "EWW-MSCI墨西哥指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991191"
+    },
+    {
+      "symbol": "AMEX:EWY",
+      "ticker": "EWY",
+      "label": "EWY-MSCI南韓指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991129"
+    },
+    {
+      "symbol": "AMEX:EWZ",
+      "ticker": "EWZ",
+      "label": "EWZ-MSCI巴西指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991031"
+    },
+    {
+      "symbol": "AMEX:EXI",
+      "ticker": "EXI",
+      "label": "EXI-iShares全球工業ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991516"
+    },
+    {
+      "symbol": "AMEX:EZA",
+      "ticker": "EZA",
+      "label": "EZA-MSCI南非指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991109"
+    },
+    {
+      "symbol": "CBOE:EZU",
+      "ticker": "EZU",
+      "label": "EZU-MSCI歐元區指數型基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991388"
+    },
+    {
+      "symbol": "NASDAQ:FALN",
+      "ticker": "FALN",
+      "label": "FALN-iShares墮落天使美元債券指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991423"
+    },
+    {
+      "symbol": "AMEX:FCG",
+      "ticker": "FCG",
+      "label": "FCG-天然氣產業指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991351"
+    },
+    {
+      "symbol": "AMEX:FDN",
+      "ticker": "FDN",
+      "label": "FDN-網路指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991332"
+    },
+    {
+      "symbol": "AMEX:FEZ",
+      "ticker": "FEZ",
+      "label": "FEZ-道瓊歐盟50指數股票型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991011"
+    },
+    {
+      "symbol": "NASDAQ:FINX",
+      "ticker": "FINX",
+      "label": "FINX-Global_X金融科技指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991399"
+    },
+    {
+      "symbol": "CBOE:FLOT",
+      "ticker": "FLOT",
+      "label": "FLOT-iShares浮動利率債券指數型基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991459"
+    },
+    {
+      "symbol": "AMEX:FXA",
+      "ticker": "FXA",
+      "label": "FXA-看多澳幣指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991369"
+    },
+    {
+      "symbol": "AMEX:FXE",
+      "ticker": "FXE",
+      "label": "FXE-看多歐元指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991410"
+    },
+    {
+      "symbol": "AMEX:FXI",
+      "ticker": "FXI",
+      "label": "FXI-富時中國50指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991025"
+    },
+    {
+      "symbol": "AMEX:FXY",
+      "ticker": "FXY",
+      "label": "FXY-看多日圓指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991367"
+    },
+    {
+      "symbol": "AMEX:GDX",
+      "ticker": "GDX",
+      "label": "GDX-美國證交所金礦指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991037"
+    },
+    {
+      "symbol": "AMEX:GDXJ",
+      "ticker": "GDXJ",
+      "label": "GDXJ-小型黃金礦業指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991343"
+    },
+    {
+      "symbol": "AMEX:GLD",
+      "ticker": "GLD",
+      "label": "GLD-道富黃金基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991017"
+    },
+    {
+      "symbol": "AMEX:GLL",
+      "ticker": "GLL",
+      "label": "GLL-兩倍看空黃金基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991149"
+    },
+    {
+      "symbol": "CBOE:GOVT",
+      "ticker": "GOVT",
+      "label": "GOVT-iShares美國公債ETF",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991508"
+    },
+    {
+      "symbol": "NASDAQ:GRID",
+      "ticker": "GRID",
+      "label": "GRID-FirstTrust那斯達克智慧電網基礎設施指數型基",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991445"
+    },
+    {
+      "symbol": "AMEX:HACK",
+      "ticker": "HACK",
+      "label": "HACK-Amplify網路安全指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991363"
+    },
+    {
+      "symbol": "NASDAQ:HEAL",
+      "ticker": "HEAL",
+      "label": "HEAL-GlobalX醫療科技指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991434"
+    },
+    {
+      "symbol": "AMEX:HEDJ",
+      "ticker": "HEDJ",
+      "label": "HEDJ-歐洲股票型匯率避險指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991308"
+    },
+    {
+      "symbol": "AMEX:HYG",
+      "ticker": "HYG",
+      "label": "HYG-ISHARES高收益公司債券指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991362"
+    },
+    {
+      "symbol": "NASDAQ:IBB",
+      "ticker": "IBB",
+      "label": "IBB-iShares生技指數基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991091"
+    },
+    {
+      "symbol": "AMEX:IBUY",
+      "ticker": "IBUY",
+      "label": "IBUY-Amplify網路零售業指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991398"
+    },
+    {
+      "symbol": "NASDAQ:ICLN",
+      "ticker": "ICLN",
+      "label": "ICLN-安碩全球乾淨能源指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991431"
+    },
+    {
+      "symbol": "CBOE:ICVT",
+      "ticker": "ICVT",
+      "label": "ICVT-iShares可轉換債券指數型基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991415"
+    },
+    {
+      "symbol": "AMEX:IDX",
+      "ticker": "IDX",
+      "label": "IDX-印尼指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991069"
+    },
+    {
+      "symbol": "NASDAQ:IEF",
+      "ticker": "IEF",
+      "label": "IEF-安碩7-10年期美國公債指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991430"
+    },
+    {
+      "symbol": "AMEX:IEUR",
+      "ticker": "IEUR",
+      "label": "IEUR-iShares核心MSCI歐洲ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991506"
+    },
+    {
+      "symbol": "AMEX:IEZ",
+      "ticker": "IEZ",
+      "label": "IEZ-道瓊美國原油設備及服務指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991065"
+    },
+    {
+      "symbol": "NASDAQ:IGF",
+      "ticker": "IGF",
+      "label": "IGF-iShares全球基礎建設產業指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991375"
+    },
+    {
+      "symbol": "NASDAQ:IGIB",
+      "ticker": "IGIB",
+      "label": "IGIB-iShares 5-10年期投資級公司債券ETF",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991520"
+    },
+    {
+      "symbol": "AMEX:IGLB",
+      "ticker": "IGLB",
+      "label": "IGLB-iShares 10年期以上投資級公司債券ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991513"
+    },
+    {
+      "symbol": "NASDAQ:IGSB",
+      "ticker": "IGSB",
+      "label": "IGSB-iShares 1-5年期投資級公司債券ETF",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991512"
+    },
+    {
+      "symbol": "CBOE:IGV",
+      "ticker": "IGV",
+      "label": "IGV-iShares擴展科技軟體類股指數型基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991406"
+    },
+    {
+      "symbol": "AMEX:IHI",
+      "ticker": "IHI",
+      "label": "IHI-iShares美國醫療設備指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991397"
+    },
+    {
+      "symbol": "AMEX:ILF",
+      "ticker": "ILF",
+      "label": "ILF-iShares拉丁美洲40指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991341"
+    },
+    {
+      "symbol": "CBOE:INDA",
+      "ticker": "INDA",
+      "label": "INDA-MSCI印度指數型基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991461"
+    },
+    {
+      "symbol": "AMEX:INDL",
+      "ticker": "INDL",
+      "label": "INDL--二倍做多印度指數股票型基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991331"
+    },
+    {
+      "symbol": "AMEX:IOO",
+      "ticker": "IOO",
+      "label": "IOO-iShares全球100指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991449"
+    },
+    {
+      "symbol": "AMEX:IPAY",
+      "ticker": "IPAY",
+      "label": "IPAY-數位支付指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991394"
+    },
+    {
+      "symbol": "AMEX:IPO",
+      "ticker": "IPO",
+      "label": "IPO-Renaissance美國IPO指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991420"
+    },
+    {
+      "symbol": "CBOE:ITA",
+      "ticker": "ITA",
+      "label": "ITA-美國航太及國防產業指數型基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991352"
+    },
+    {
+      "symbol": "CBOE:ITB",
+      "ticker": "ITB",
+      "label": "ITB-道瓊美國房屋建築指數基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991105"
+    },
+    {
+      "symbol": "AMEX:IVE",
+      "ticker": "IVE",
+      "label": "IVE-ISHARES標普500價值型指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991311"
+    },
+    {
+      "symbol": "AMEX:IVV",
+      "ticker": "IVV",
+      "label": "IVV-iShares核心標普500指數ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991505"
+    },
+    {
+      "symbol": "AMEX:IWM",
+      "ticker": "IWM",
+      "label": "IWM-羅素2000指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991115"
+    },
+    {
+      "symbol": "AMEX:IWN",
+      "ticker": "IWN",
+      "label": "IWN-羅素2000價值型指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991407"
+    },
+    {
+      "symbol": "AMEX:IWO",
+      "ticker": "IWO",
+      "label": "IWO-羅素2000成長股指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991201"
+    },
+    {
+      "symbol": "AMEX:IYG",
+      "ticker": "IYG",
+      "label": "IYG-ISHARES美國金融服務類股指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991195"
+    },
+    {
+      "symbol": "AMEX:IYR",
+      "ticker": "IYR",
+      "label": "IYR-道瓊美國不動產投資信託ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991007"
+    },
+    {
+      "symbol": "CBOE:IYT",
+      "ticker": "IYT",
+      "label": "IYT-iShares運輸平均指數基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991318"
+    },
+    {
+      "symbol": "CBOE:IYZ",
+      "ticker": "IYZ",
+      "label": "IYZ-美國電信產業指數型基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991390"
+    },
+    {
+      "symbol": "AMEX:JAAA",
+      "ticker": "JAAA",
+      "label": "JAAA-Janus Henderson AAA級CLO債券主動型ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991525"
+    },
+    {
+      "symbol": "AMEX:JEPI",
+      "ticker": "JEPI",
+      "label": "JEPI-JPMorgan股票溢價收益主動型ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991477"
+    },
+    {
+      "symbol": "AMEX:JETS",
+      "ticker": "JETS",
+      "label": "JETS-全球噴射機產業指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991409"
+    },
+    {
+      "symbol": "AMEX:JMBS",
+      "ticker": "JMBS",
+      "label": "JMBS-JanusHenderson抵押貸款證券主動型ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991503"
+    },
+    {
+      "symbol": "AMEX:KARS",
+      "ticker": "KARS",
+      "label": "KARS-KraneShares電動車及未來移動指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991454"
+    },
+    {
+      "symbol": "AMEX:KBE",
+      "ticker": "KBE",
+      "label": "KBE-SPDR標普銀行業指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991450"
+    },
+    {
+      "symbol": "AMEX:KIE",
+      "ticker": "KIE",
+      "label": "KIE-SPDR標普保險業指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991456"
+    },
+    {
+      "symbol": "AMEX:KOMP",
+      "ticker": "KOMP",
+      "label": "KOMP-標普Kensho新經濟指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991419"
+    },
+    {
+      "symbol": "AMEX:KRBN",
+      "ticker": "KRBN",
+      "label": "KRBN-KraneShares全球碳權指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991453"
+    },
+    {
+      "symbol": "AMEX:KRE",
+      "ticker": "KRE",
+      "label": "KRE-SPDR標普地區性銀行指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991199"
+    },
+    {
+      "symbol": "AMEX:KSA",
+      "ticker": "KSA",
+      "label": "KSA-MSCI沙烏地阿拉伯指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991460"
+    },
+    {
+      "symbol": "AMEX:KURE",
+      "ticker": "KURE",
+      "label": "KURE-MSCI中國健康照護產業指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991416"
+    },
+    {
+      "symbol": "AMEX:KWEB",
+      "ticker": "KWEB",
+      "label": "KWEB-中國網路產業指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991350"
+    },
+    {
+      "symbol": "AMEX:LIT",
+      "ticker": "LIT",
+      "label": "LIT-全球鋰礦產業指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991372"
+    },
+    {
+      "symbol": "AMEX:LQD",
+      "ticker": "LQD",
+      "label": "LQD-IBOXX投資等級公司債券基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991161"
+    },
+    {
+      "symbol": "NASDAQ:MAGS",
+      "ticker": "MAGS",
+      "label": "MAGS-Roundhill壯麗七主動型ETF",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991521"
+    },
+    {
+      "symbol": "NASDAQ:MCHI",
+      "ticker": "MCHI",
+      "label": "MCHI-MSCI中國指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991389"
+    },
+    {
+      "symbol": "AMEX:METV",
+      "ticker": "METV",
+      "label": "METV-RoundHill元宇宙指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991451"
+    },
+    {
+      "symbol": "AMEX:MOO",
+      "ticker": "MOO",
+      "label": "MOO-全球農業類股基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991049"
+    },
+    {
+      "symbol": "CBOE:MTUM",
+      "ticker": "MTUM",
+      "label": "MTUM-iSharesMSCI美國動能因子指數型基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991425"
+    },
+    {
+      "symbol": "CBOE:NANC",
+      "ticker": "NANC",
+      "label": "NANC-UnusualWhales顛覆性民主黨交易主動型ETF",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991490"
+    },
+    {
+      "symbol": "AMEX:NASA",
+      "ticker": "NASA",
+      "label": "NASA-Tema太空創新者主動型ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991529"
+    },
+    {
+      "symbol": "AMEX:NERD",
+      "ticker": "NERD",
+      "label": "NERD-Roundhill電競及數位娛樂指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991452"
+    },
+    {
+      "symbol": "AMEX:NLR",
+      "ticker": "NLR",
+      "label": "NLR-VanEck鈾與核能ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991504"
+    },
+    {
+      "symbol": "AMEX:NUGT",
+      "ticker": "NUGT",
+      "label": "NUGT-兩倍做多黃金礦業指數型基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991215"
+    },
+    {
+      "symbol": "NASDAQ:NVDL",
+      "ticker": "NVDL",
+      "label": "NVDL-GraniteShares兩倍做多NVDA主動型ETF-限專投/O",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991487"
+    },
+    {
+      "symbol": "AMEX:NVDY",
+      "ticker": "NVDY",
+      "label": "NVDY-YieldMaxNVDA期權收益策略主動型交易所交易基",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991500"
+    },
+    {
+      "symbol": "NASDAQ:NXTG",
+      "ticker": "NXTG",
+      "label": "NXTG-FirstTrustIndxx新世代通訊指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991404"
+    },
+    {
+      "symbol": "AMEX:OIH",
+      "ticker": "OIH",
+      "label": "OIH-美國石油服務產業指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991392"
+    },
+    {
+      "symbol": "AMEX:PALL",
+      "ticker": "PALL",
+      "label": "PALL-ETFS實體鈀價指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991382"
+    },
+    {
+      "symbol": "CBOE:PAVE",
+      "ticker": "PAVE",
+      "label": "PAVE-GlobalX美國基礎建設開發指數型基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991436"
+    },
+    {
+      "symbol": "CBOE:PAWZ",
+      "ticker": "PAWZ",
+      "label": "PAWZ-ProShares寵物照護指數型基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991421"
+    },
+    {
+      "symbol": "AMEX:PBW",
+      "ticker": "PBW",
+      "label": "PBW-景順清潔能源指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991413"
+    },
+    {
+      "symbol": "AMEX:PEJ",
+      "ticker": "PEJ",
+      "label": "PEJ-景順動態休閒娛樂產業指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991422"
+    },
+    {
+      "symbol": "NASDAQ:PFF",
+      "ticker": "PFF",
+      "label": "PFF-美國優先股指數基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991310"
+    },
+    {
+      "symbol": "AMEX:PFIX",
+      "ticker": "PFIX",
+      "label": "PFIX-美國國庫券避險主動型交易所交易基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991463"
+    },
+    {
+      "symbol": "AMEX:PGF",
+      "ticker": "PGF",
+      "label": "PGF-PowerShares金融優先股基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991320"
+    },
+    {
+      "symbol": "NASDAQ:PHO",
+      "ticker": "PHO",
+      "label": "PHO-景順水資源指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991439"
+    },
+    {
+      "symbol": "NASDAQ:PKW",
+      "ticker": "PKW",
+      "label": "PKW-股票回購指數基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991189"
+    },
+    {
+      "symbol": "AMEX:PSQ",
+      "ticker": "PSQ",
+      "label": "PSQ-放空型那斯達克100指數基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991061"
+    },
+    {
+      "symbol": "AMEX:QID",
+      "ticker": "QID",
+      "label": "QID-二倍放空那斯達克指數股票型基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991330"
+    },
+    {
+      "symbol": "AMEX:QLD",
+      "ticker": "QLD",
+      "label": "QLD-兩倍做多那斯達克100指數基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991113"
+    },
+    {
+      "symbol": "NASDAQ:QQQ",
+      "ticker": "QQQ",
+      "label": "QQQ-那斯達克100指數基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991003"
+    },
+    {
+      "symbol": "NASDAQ:QQQI",
+      "ticker": "QQQI",
+      "label": "QQQI-NEOS納斯達克100高收益主動型ETF",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991518"
+    },
+    {
+      "symbol": "NASDAQ:QQQM",
+      "ticker": "QQQM",
+      "label": "QQQM-Invesco納斯達克100 ETF",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991531"
+    },
+    {
+      "symbol": "NASDAQ:QTUM",
+      "ticker": "QTUM",
+      "label": "QTUM-Defiance量子交易所交易基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991496"
+    },
+    {
+      "symbol": "NASDAQ:QYLD",
+      "ticker": "QYLD",
+      "label": "QYLD-那斯達克100掩護性買權指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991458"
+    },
+    {
+      "symbol": "CBOE:REM",
+      "ticker": "REM",
+      "label": "REM-美國不動產協會抵押貸款指數基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991131"
+    },
+    {
+      "symbol": "AMEX:REMX",
+      "ticker": "REMX",
+      "label": "REMX-全球稀土及策略金屬產業指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991403"
+    },
+    {
+      "symbol": "AMEX:ROBO",
+      "ticker": "ROBO",
+      "label": "ROBO-全球機器人與自動化指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991354"
+    },
+    {
+      "symbol": "AMEX:RSP",
+      "ticker": "RSP",
+      "label": "RSP-Invesco標普500平均加權指數股票型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991480"
+    },
+    {
+      "symbol": "AMEX:SCO",
+      "ticker": "SCO",
+      "label": "SCO-兩倍放空彭博原油指數基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991075"
+    },
+    {
+      "symbol": "AMEX:SDOW",
+      "ticker": "SDOW",
+      "label": "SDOW-三倍放空道瓊30指數基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991326"
+    },
+    {
+      "symbol": "AMEX:SDS",
+      "ticker": "SDS",
+      "label": "SDS-兩倍看空S&P500指數型基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991151"
+    },
+    {
+      "symbol": "AMEX:SDY",
+      "ticker": "SDY",
+      "label": "SDY-標準普爾高股利指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991193"
+    },
+    {
+      "symbol": "AMEX:SH",
+      "ticker": "SH",
+      "label": "SH-ProShares放空標普500指數基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991322"
+    },
+    {
+      "symbol": "AMEX:SHLD",
+      "ticker": "SHLD",
+      "label": "SHLD-GlobalX國防科技指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991498"
+    },
+    {
+      "symbol": "NASDAQ:SHY",
+      "ticker": "SHY",
+      "label": "SHY-iShares 1-3年期美國公債ETF",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991509"
+    },
+    {
+      "symbol": "AMEX:SKF",
+      "ticker": "SKF",
+      "label": "SKF-ProShares二倍放空金融股指數型基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991336"
+    },
+    {
+      "symbol": "NASDAQ:SKYY",
+      "ticker": "SKYY",
+      "label": "SKYY-雲端運算指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991334"
+    },
+    {
+      "symbol": "AMEX:SLV",
+      "ticker": "SLV",
+      "label": "SLV-安碩白銀基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991047"
+    },
+    {
+      "symbol": "AMEX:SLX",
+      "ticker": "SLX",
+      "label": "SLX-鋼鐵指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991063"
+    },
+    {
+      "symbol": "NASDAQ:SMH",
+      "ticker": "SMH",
+      "label": "SMH-VanEck半導體產業指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991432"
+    },
+    {
+      "symbol": "NASDAQ:SOCL",
+      "ticker": "SOCL",
+      "label": "SOCL-GLOBALX社群媒體類股指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991359"
+    },
+    {
+      "symbol": "AMEX:SOXL",
+      "ticker": "SOXL",
+      "label": "SOXL-每日三倍做多半導體指數型基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991455"
+    },
+    {
+      "symbol": "AMEX:SOXS",
+      "ticker": "SOXS",
+      "label": "SOXS-Direxion每日三倍放空半導體ETF-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991491"
+    },
+    {
+      "symbol": "NASDAQ:SOXX",
+      "ticker": "SOXX",
+      "label": "SOXX-iShares半導體產業指數基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991079"
+    },
+    {
+      "symbol": "AMEX:SPAB",
+      "ticker": "SPAB",
+      "label": "SPAB-巴克萊美國綜合債券基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991163"
+    },
+    {
+      "symbol": "AMEX:SPFF",
+      "ticker": "SPFF",
+      "label": "SPFF-GlobalX美國特別股指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991376"
+    },
+    {
+      "symbol": "AMEX:SPMO",
+      "ticker": "SPMO",
+      "label": "SPMO-Invesco標普500動能ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991532"
+    },
+    {
+      "symbol": "AMEX:SPTL",
+      "ticker": "SPTL",
+      "label": "SPTL-SPDR投資組合長期美國公債ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991510"
+    },
+    {
+      "symbol": "AMEX:SPY",
+      "ticker": "SPY",
+      "label": "SPY-史坦普500指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991001"
+    },
+    {
+      "symbol": "NASDAQ:SQQQ",
+      "ticker": "SQQQ",
+      "label": "SQQQ-ProShares三倍放空納斯達克指數ETF-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991527"
+    },
+    {
+      "symbol": "AMEX:SRS",
+      "ticker": "SRS",
+      "label": "SRS-ProShares二倍放空房地產指數型基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991337"
+    },
+    {
+      "symbol": "AMEX:SRVR",
+      "ticker": "SRVR",
+      "label": "SRVR-數據和基礎建設房地產指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991408"
+    },
+    {
+      "symbol": "AMEX:SSO",
+      "ticker": "SSO",
+      "label": "SSO-兩倍做多S&P500指數型基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991087"
+    },
+    {
+      "symbol": "CBOE:TAIL",
+      "ticker": "TAIL",
+      "label": "TAIL-Cambria極端風險主動型交易所交易基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991472"
+    },
+    {
+      "symbol": "AMEX:TAN",
+      "ticker": "TAN",
+      "label": "TAN-GUGGENHEIM太陽能指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991360"
+    },
+    {
+      "symbol": "AMEX:TBT",
+      "ticker": "TBT",
+      "label": "TBT-兩倍看空20年期以上美國公債基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991153"
+    },
+    {
+      "symbol": "AMEX:THD",
+      "ticker": "THD",
+      "label": "THD-MSCI泰國指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991119"
+    },
+    {
+      "symbol": "AMEX:TIP",
+      "ticker": "TIP",
+      "label": "TIP-巴克萊抗通膨債券指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991057"
+    },
+    {
+      "symbol": "AMEX:TLH",
+      "ticker": "TLH",
+      "label": "TLH-iShares 10-20年期美國公債ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991515"
+    },
+    {
+      "symbol": "NASDAQ:TLT",
+      "ticker": "TLT",
+      "label": "TLT-巴克萊20年期以上美國公債指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991095"
+    },
+    {
+      "symbol": "CBOE:TLTW",
+      "ticker": "TLTW",
+      "label": "TLTW-iShares 20年期以上美國公債買沖策略ETF",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991523"
+    },
+    {
+      "symbol": "AMEX:TMF",
+      "ticker": "TMF",
+      "label": "TMF-Direxion每日三倍做多20年期以上美國公債ETF-限",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991528"
+    },
+    {
+      "symbol": "NASDAQ:TSLL",
+      "ticker": "TSLL",
+      "label": "TSLL-Direxion每日2倍做多TSLA主動型ETF-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991488"
+    },
+    {
+      "symbol": "AMEX:TSLY",
+      "ticker": "TSLY",
+      "label": "TSLY-YieldMaxTSLA期權收益策略主動型交易所交易基",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991501"
+    },
+    {
+      "symbol": "NASDAQ:TUR",
+      "ticker": "TUR",
+      "label": "TUR-MSCI土耳其指數基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991067"
+    },
+    {
+      "symbol": "AMEX:TWM",
+      "ticker": "TWM",
+      "label": "TWM-二倍放空羅素2000指數基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991127"
+    },
+    {
+      "symbol": "AMEX:TZA",
+      "ticker": "TZA",
+      "label": "TZA-三倍放空美國小型股指數基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991323"
+    },
+    {
+      "symbol": "AMEX:UBT",
+      "ticker": "UBT",
+      "label": "UBT-ProShares二倍做多20年以上公債",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991476"
+    },
+    {
+      "symbol": "AMEX:UCO",
+      "ticker": "UCO",
+      "label": "UCO-兩倍做多彭博原油指數基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991073"
+    },
+    {
+      "symbol": "NASDAQ:UFO",
+      "ticker": "UFO",
+      "label": "UFO-Procure太空ETF",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991519"
+    },
+    {
+      "symbol": "AMEX:UGL",
+      "ticker": "UGL",
+      "label": "UGL-兩倍做多黃金基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991081"
+    },
+    {
+      "symbol": "AMEX:UNG",
+      "ticker": "UNG",
+      "label": "UNG-美國天然氣指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991344"
+    },
+    {
+      "symbol": "AMEX:URA",
+      "ticker": "URA",
+      "label": "URA-全球鈾礦產業指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991371"
+    },
+    {
+      "symbol": "AMEX:USD",
+      "ticker": "USD",
+      "label": "USD-ProShares二倍做多半導體指數型基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991489"
+    },
+    {
+      "symbol": "CBOE:USHY",
+      "ticker": "USHY",
+      "label": "USHY-iShares美元非投資等級公司債券ETF",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991514"
+    },
+    {
+      "symbol": "NASDAQ:USIG",
+      "ticker": "USIG",
+      "label": "USIG-iShares美國整體投資級公司債券ETF",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991511"
+    },
+    {
+      "symbol": "CBOE:USMV",
+      "ticker": "USMV",
+      "label": "USMV-MSCI美國最低波動指數型基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991402"
+    },
+    {
+      "symbol": "AMEX:USO",
+      "ticker": "USO",
+      "label": "USO-美國石油基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991019"
+    },
+    {
+      "symbol": "AMEX:UUP",
+      "ticker": "UUP",
+      "label": "UUP-德銀美元指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991071"
+    },
+    {
+      "symbol": "CBOE:UVXY",
+      "ticker": "UVXY",
+      "label": "UVXY-1.5倍做多VIX指數短期期貨基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991187"
+    },
+    {
+      "symbol": "AMEX:UWM",
+      "ticker": "UWM",
+      "label": "UWM-二倍做多羅素2000指數基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991125"
+    },
+    {
+      "symbol": "AMEX:VAW",
+      "ticker": "VAW",
+      "label": "VAW-Vanguard原物料類股指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991443"
+    },
+    {
+      "symbol": "NASDAQ:VCLT",
+      "ticker": "VCLT",
+      "label": "VCLT-Vanguard長期公司債券指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991475"
+    },
+    {
+      "symbol": "AMEX:VEA",
+      "ticker": "VEA",
+      "label": "VEA-富時已開發國家指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991387"
+    },
+    {
+      "symbol": "AMEX:VHT",
+      "ticker": "VHT",
+      "label": "VHT-Vanguard健康照護類股指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991412"
+    },
+    {
+      "symbol": "AMEX:VIG",
+      "ticker": "VIG",
+      "label": "VIG-美國股利增值指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991358"
+    },
+    {
+      "symbol": "CBOE:VIXY",
+      "ticker": "VIXY",
+      "label": "VIXY-VIX指數短期期貨基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991185"
+    },
+    {
+      "symbol": "CBOE:VNM",
+      "ticker": "VNM",
+      "label": "VNM-越南指數型基金",
+      "market": "US",
+      "cathayExchange": "CboeBZX",
+      "bankFundId": "00991051"
+    },
+    {
+      "symbol": "AMEX:VNQ",
+      "ticker": "VNQ",
+      "label": "VNQ-美國不動產投資信託指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991357"
+    },
+    {
+      "symbol": "AMEX:VOO",
+      "ticker": "VOO",
+      "label": "VOO-Vanguard標普500指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991442"
+    },
+    {
+      "symbol": "AMEX:VRP",
+      "ticker": "VRP",
+      "label": "VRP-PowerShares變動利率特別股指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991385"
+    },
+    {
+      "symbol": "AMEX:VT",
+      "ticker": "VT",
+      "label": "VT-Vanguard全世界股票指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991448"
+    },
+    {
+      "symbol": "AMEX:VTI",
+      "ticker": "VTI",
+      "label": "VTI-VANGUARD整體股市指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991312"
+    },
+    {
+      "symbol": "AMEX:VTV",
+      "ticker": "VTV",
+      "label": "VTV-價值股指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991427"
+    },
+    {
+      "symbol": "AMEX:VWO",
+      "ticker": "VWO",
+      "label": "VWO-VanguardFTSE新興市場指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991457"
+    },
+    {
+      "symbol": "NASDAQ:WCLD",
+      "ticker": "WCLD",
+      "label": "WCLD-WisdomTree雲端運算指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991426"
+    },
+    {
+      "symbol": "AMEX:WEAT",
+      "ticker": "WEAT",
+      "label": "WEAT-小麥期貨基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991137"
+    },
+    {
+      "symbol": "NASDAQ:WOOD",
+      "ticker": "WOOD",
+      "label": "WOOD-iShares全球木材及林業指數型基金",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991444"
+    },
+    {
+      "symbol": "AMEX:XHB",
+      "ticker": "XHB",
+      "label": "XHB-標準普爾房屋建商基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991133"
+    },
+    {
+      "symbol": "AMEX:XLB",
+      "ticker": "XLB",
+      "label": "XLB-標準普爾原物料類股指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991364"
+    },
+    {
+      "symbol": "AMEX:XLC",
+      "ticker": "XLC",
+      "label": "XLC-標準普爾通訊服務類股指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991400"
+    },
+    {
+      "symbol": "AMEX:XLE",
+      "ticker": "XLE",
+      "label": "XLE-標準普爾能源類股ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991301"
+    },
+    {
+      "symbol": "AMEX:XLF",
+      "ticker": "XLF",
+      "label": "XLF-S&P金融產業指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991023"
+    },
+    {
+      "symbol": "AMEX:XLI",
+      "ticker": "XLI",
+      "label": "XLI-道富工業類股指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991366"
+    },
+    {
+      "symbol": "AMEX:XLK",
+      "ticker": "XLK",
+      "label": "XLK-SPDR科技類股指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991205"
+    },
+    {
+      "symbol": "AMEX:XLP",
+      "ticker": "XLP",
+      "label": "XLP-標準普爾必需性消費類股基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991135"
+    },
+    {
+      "symbol": "AMEX:XLRE",
+      "ticker": "XLRE",
+      "label": "XLRE-SPDR房地產類股指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991356"
+    },
+    {
+      "symbol": "AMEX:XLU",
+      "ticker": "XLU",
+      "label": "XLU-標準普爾公用事業類股基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991145"
+    },
+    {
+      "symbol": "AMEX:XLV",
+      "ticker": "XLV",
+      "label": "XLV-標準普爾健康醫療類股基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991147"
+    },
+    {
+      "symbol": "AMEX:XLY",
+      "ticker": "XLY",
+      "label": "XLY-標準普爾非必需消費類股指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991353"
+    },
+    {
+      "symbol": "AMEX:XME",
+      "ticker": "XME",
+      "label": "XME-SPDR標準普爾金屬與礦產業指數基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991021"
+    },
+    {
+      "symbol": "AMEX:XOP",
+      "ticker": "XOP",
+      "label": "XOP-標準普爾油氣開採與生產指數ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991304"
+    },
+    {
+      "symbol": "AMEX:XRT",
+      "ticker": "XRT",
+      "label": "XRT-標準普爾零售類股指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991365"
+    },
+    {
+      "symbol": "AMEX:XYLD",
+      "ticker": "XYLD",
+      "label": "XYLD-GlobalX標普500掩護性買權指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991499"
+    },
+    {
+      "symbol": "AMEX:YANG",
+      "ticker": "YANG",
+      "label": "YANG-每日三倍放空富時中國50指數基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991319"
+    },
+    {
+      "symbol": "AMEX:YINN",
+      "ticker": "YINN",
+      "label": "YINN-三倍做多富時中國50指數型基金-限專投/OBU",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991213"
+    },
+    {
+      "symbol": "AMEX:YMAG",
+      "ticker": "YMAG",
+      "label": "YMAG-YieldMax Magnificent 7期權收益主動型ETF",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991522"
+    },
+    {
+      "symbol": "AMEX:ZROZ",
+      "ticker": "ZROZ",
+      "label": "ZROZ-25年期以上零息美國公債指數型基金",
+      "market": "US",
+      "cathayExchange": "NYSE",
+      "bankFundId": "00991473"
+    }
+  ]
+}

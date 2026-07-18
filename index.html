@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="國泰世華架上 Top 50 ETF 即時技術掃描">
-  <title>Top 50 ETF 即時技術掃描</title>
+  <meta name="description" content="國泰世華可銷售 ETF 即時技術掃描">
+  <title>國泰世華全數 ETF 即時技術掃描</title>
   <style>
     :root { --ink:#192235; --muted:#667085; --line:#dbe2ea; --panel:#fff; --page:#f4f7fb; --brand:#2457d6; --brand-soft:#eaf0ff; --good:#147a4b; --good-soft:#e9f8f0; --bad:#bd2e3c; --bad-soft:#fff0f1; --warn:#956600; --warn-soft:#fff7d7; }
     * { box-sizing:border-box; }
@@ -74,15 +74,15 @@
     <header class="hero">
       <div>
         <p class="eyebrow">Cathay Shelf ETF · Live technical scan</p>
-        <h1>Top 50 ETF 即時技術掃描</h1>
-        <p class="subtitle">依原 Top 50 ETF 標的清單，直接讀取 TradingView 即時行情與技術指標。</p>
+        <h1>國泰世華全數 ETF 即時技術掃描</h1>
+        <p class="subtitle">涵蓋國泰世華 ETF 搜尋頁目前可銷售的全數標的，直接讀取 TradingView 即時行情與技術指標。</p>
       </div>
-      <div class="source">資料來源：TradingView 全球掃描器。各交易所資料更新速度依市場與 TradingView 提供時間而異。</div>
+      <div class="source">標的清單依國泰世華 ETF 搜尋頁每日同步；行情與技術指標來自 TradingView 全球掃描器。</div>
     </header>
 
     <section class="toolbar" aria-label="篩選工具列">
       <div class="field search-field"><label for="searchInput">搜尋 ETF</label><input id="searchInput" type="search" placeholder="代碼、名稱或交易所"></div>
-      <div class="field"><label for="marketFilter">市場</label><select id="marketFilter"><option value="all">全部市場</option><option value="US">美國</option><option value="TW">台灣</option><option value="JP">日本</option></select></div>
+      <div class="field"><label for="marketFilter">市場</label><select id="marketFilter"><option value="all">全部市場</option><option value="US">美國</option><option value="TW">台灣</option><option value="JP">日本</option><option value="HK">香港</option></select></div>
       <div class="field"><label for="trendFilter">趨勢</label><select id="trendFilter"><option value="all">全部趨勢</option><option value="bull">多頭（收盤 &gt; SMA200）</option><option value="bear">空頭（收盤 &lt; SMA200）</option></select></div>
       <div class="field"><label>週績效 (%)</label><div class="range"><input id="weekMin" type="number" placeholder="最小"><input id="weekMax" type="number" placeholder="最大"></div></div>
       <button id="refreshBtn" type="button">↻ 更新即時資料</button>
@@ -110,7 +110,7 @@
   <script>
     const SCAN_URL = 'https://scanner.tradingview.com/global/scan';
     const COLUMNS = ['name','description','close','Perf.D','Perf.W','Perf.1M','Perf.3M','Perf.6M','SMA20','SMA50','SMA150','SMA200','price_52_week_high','price_52_week_low','RSI','relative_volume_10d_calc','Recommend.All'];
-    const ETF_UNIVERSE = [
+    const FALLBACK_UNIVERSE = [
       ['AMEX:SOXL','SOXL','SOXL-每日三倍做多半導體指數型基金','US'], ['AMEX:USD','USD','USD-ProShares二倍做多半導體指數型基金','US'], ['AMEX:EWY','EWY','EWY-MSCI南韓指數基金','US'], ['TSE:1570','1570.JP','1570.JT-NextFunds兩倍做多日經225交易所基金','JP'], ['NASDAQ:SOXX','SOXX','SOXX-iShares半導體產業指數基金','US'],
       ['TSE:2644','2644.JP','2644.JT-GlobalX日本半導體指數基金','JP'], ['TWSE:00881','00881.TW','國內-00881國泰台灣科技龍頭ETF基金','TW'], ['AMEX:REMX','REMX','REMX-全球稀土及策略金屬產業指數型基金','US'], ['TPEX:006201','006201.TW','國內-元大櫃買ETF傘型之富櫃50基金','TW'], ['TWSE:0053','0053.TW','國內-元大台灣電子科技基金','TW'],
       ['NASDAQ:SMH','SMH','SMH-VanEck半導體產業指數型基金','US'], ['TWSE:0050','0050.TW','國內-元大台灣卓越50基金','TW'], ['AMEX:LIT','LIT','LIT-全球鋰礦產業指數型基金','US'], ['TWSE:00922','00922.TW','國內-00922國泰台灣領袖50ETF','TW'], ['AMEX:PBW','PBW','PBW-景順清潔能源指數型基金','US'],
@@ -122,30 +122,34 @@
       ['TWSE:00878','00878.TW','國內-00878國泰台灣ESG永續高股息ETF基金','TW'], ['NASDAQ:EMXC','EMXC','EMXC-iSharesMSCI新興市場中國除外指數基金','US'], ['NASDAQ:ICLN','ICLN','ICLN-安碩全球乾淨能源指數基金','US'], ['TWSE:0056','0056.TW','國內-元大台灣高股息基金','TW'], ['AMEX:BNO','BNO','BNO-布蘭特原油基金','US'],
       ['NASDAQ:NVDL','NVDL','NVDL-GraniteShares兩倍做多NVDA主動型ETF投/O','US'], ['AMEX:KARS','KARS','KARS-KraneShares電動車及未來移動指數型基金','US'], ['CBOE:IYZ','IYZ','IYZ-美國電信產業指數型基金','US'], ['CBOE:ARKQ','ARKQ','ARKQ-ARK自主技術與機器人主動型ETF','US'], ['AMEX:ECON','ECON','ECON-研究增強型新興經濟體指數型基金','US']
     ].map(([symbol,ticker,label,market]) => ({ symbol,ticker,label,market }));
+    let ETF_UNIVERSE = FALLBACK_UNIVERSE;
 
     const SCENARIOS = [
       { id:'all', name:'全部 ETF', rule:'顯示所有可取得即時資料的標的', test:() => true },
-      { id:'bullWeekDrop', name:'多頭本週大跌', rule:'收盤 > SMA200；週績效 ≤ -5%', test:x => x.close > x.sma200 && x.week <= -5 },
-      { id:'bullMonthDrop', name:'多頭本月大跌', rule:'收盤 > SMA200；月績效 ≤ -10%', test:x => x.close > x.sma200 && x.month <= -10 },
-      { id:'bearWeekRise', name:'空頭本週大漲', rule:'收盤 < SMA200；週績效 ≥ 5%', test:x => x.close < x.sma200 && x.week >= 5 },
-      { id:'bearMonthRise', name:'空頭本月大漲', rule:'收盤 < SMA200；月績效 ≥ 10%', test:x => x.close < x.sma200 && x.month >= 10 },
-      { id:'cupHandle', name:'杯柄型態', rule:'均線多頭排列、距高點 < 20%、6月 > 0、RSI 50–70', test:x => x.close > x.sma50 && x.sma50 > x.sma150 && x.sma150 > x.sma200 && x.fromHigh < 20 && x.sixMonth > 0 && between(x.rsi,50,70) },
-      { id:'vcp', name:'強勢杯柄 / VCP', rule:'多頭排列、距高點 < 20%、6月 > 10%、RSI 50–70、相對量 < 1.2', test:x => x.close > x.sma50 && x.sma50 > x.sma150 && x.sma150 > x.sma200 && x.fromHigh < 20 && x.sixMonth > 10 && between(x.rsi,50,70) && x.relativeVolume < 1.2 },
-      { id:'breakout', name:'突破確認', rule:'收盤 > SMA20、SMA50；日漲 > 2%；相對量 > 1.5；距高點 < 10%', test:x => x.close > x.sma20 && x.close > x.sma50 && x.day > 2 && x.relativeVolume > 1.5 && between(x.rsi,60,75) && x.fromHigh < 10 },
-      { id:'roundBase', name:'圓弧底 / 深杯轉強', rule:'收盤 > SMA50；1月 > 0、3月 > 5%；距低點 > 30%；RSI 50–70', test:x => x.close > x.sma50 && x.month > 0 && x.threeMonth > 5 && x.fromLow > 30 && between(x.rsi,50,70) && x.recommend >= 0 }
+      { id:'bullWeekDrop', name:'多頭本週大跌', rule:'收盤 > SMA200；週績效 ≤ -5%', test:x => above(x.close,x.sma200) && x.week <= -5 },
+      { id:'bullMonthDrop', name:'多頭本月大跌', rule:'收盤 > SMA200；月績效 ≤ -10%', test:x => above(x.close,x.sma200) && x.month <= -10 },
+      { id:'bearWeekRise', name:'空頭本週大漲', rule:'收盤 < SMA200；週績效 ≥ 5%', test:x => below(x.close,x.sma200) && x.week >= 5 },
+      { id:'bearMonthRise', name:'空頭本月大漲', rule:'收盤 < SMA200；月績效 ≥ 10%', test:x => below(x.close,x.sma200) && x.month >= 10 },
+      { id:'cupHandle', name:'杯柄型態', rule:'均線多頭排列、距高點 < 20%、6月 > 0、RSI 50–70', test:x => above(x.close,x.sma50) && above(x.sma50,x.sma150) && above(x.sma150,x.sma200) && x.fromHigh < 20 && x.sixMonth > 0 && between(x.rsi,50,70) },
+      { id:'vcp', name:'強勢杯柄 / VCP', rule:'多頭排列、距高點 < 20%、6月 > 10%、RSI 50–70、相對量 < 1.2', test:x => above(x.close,x.sma50) && above(x.sma50,x.sma150) && above(x.sma150,x.sma200) && x.fromHigh < 20 && x.sixMonth > 10 && between(x.rsi,50,70) && x.relativeVolume < 1.2 },
+      { id:'breakout', name:'突破確認', rule:'收盤 > SMA20、SMA50；日漲 > 2%；相對量 > 1.5；距高點 < 10%', test:x => above(x.close,x.sma20) && above(x.close,x.sma50) && x.day > 2 && x.relativeVolume > 1.5 && between(x.rsi,60,75) && x.fromHigh < 10 },
+      { id:'roundBase', name:'圓弧底 / 深杯轉強', rule:'收盤 > SMA50；1月 > 0、3月 > 5%；距低點 > 30%；RSI 50–70', test:x => above(x.close,x.sma50) && x.month > 0 && x.threeMonth > 5 && x.fromLow > 30 && between(x.rsi,50,70) && x.recommend >= 0 }
     ];
 
     let allRows = [];
     let activeScenario = 'all';
     const $ = id => document.getElementById(id);
     const number = value => value === null || value === undefined || value === '' || !Number.isFinite(Number(value)) ? null : Number(value);
+    const hasNumber = value => typeof value === 'number' && Number.isFinite(value);
+    const above = (left,right) => hasNumber(left) && hasNumber(right) && left > right;
+    const below = (left,right) => hasNumber(left) && hasNumber(right) && left < right;
     const between = (value,min,max) => Number.isFinite(value) && value >= min && value <= max;
     const pct = value => value === null || value === undefined ? '—' : `${value >= 0 ? '+' : ''}${value.toFixed(2)}%`;
     const price = value => value === null || value === undefined ? '—' : value.toLocaleString(undefined,{maximumFractionDigits:2});
     const valueClass = value => value > 0 ? 'pos' : value < 0 ? 'neg' : '';
 
     function scannerPayload() {
-      return { filter:[], options:{lang:'en'}, symbols:{query:{types:[]}, tickers:ETF_UNIVERSE.map(item => item.symbol)}, columns:COLUMNS, sort:{sortBy:'name',sortOrder:'asc'}, range:[0,100] };
+      return { filter:[], options:{lang:'en'}, symbols:{query:{types:[]}, tickers:ETF_UNIVERSE.map(item => item.symbol)}, columns:COLUMNS, sort:{sortBy:'name',sortOrder:'asc'}, range:[0,500] };
     }
 
     function normalise(response) {
@@ -188,12 +192,12 @@
         if (!scenarioMatches(item,activeScenario)) return false;
         if (query && !`${item.ticker} ${item.label} ${item.description || ''} ${item.symbol}`.toLowerCase().includes(query)) return false;
         if (market !== 'all' && item.market !== market) return false;
-        if (trend === 'bull' && !(item.close > item.sma200)) return false;
-        if (trend === 'bear' && !(item.close < item.sma200)) return false;
+        if (trend === 'bull' && !above(item.close,item.sma200)) return false;
+        if (trend === 'bear' && !below(item.close,item.sma200)) return false;
         if (minWeek !== null && !(item.week >= minWeek)) return false;
         if (maxWeek !== null && !(item.week <= maxWeek)) return false;
         return true;
-      }).sort((a,b) => (b.week || -Infinity) - (a.week || -Infinity));
+      }).sort((a,b) => (hasNumber(b.week) ? b.week : -Infinity) - (hasNumber(a.week) ? a.week : -Infinity));
     }
 
     function renderTable() {
@@ -202,12 +206,21 @@
       $('statusText').innerHTML = `顯示 <strong>${rows.length}</strong> / ${allRows.length} 檔可用標的 · 情境：<strong>${scenarioName}</strong>`;
       $('tableBody').innerHTML = rows.length ? rows.map(item => {
         const matches = item.matches.length ? item.matches.map(id => `<span class="match">${SCENARIOS.find(s => s.id === id).name}</span>`).join('') : '<span class="muted">—</span>';
-        const trend = item.close > item.sma200 ? '<span class="trend bull">多頭</span>' : '<span class="trend bear">空頭</span>';
+        const trend = above(item.close,item.sma200) ? '<span class="trend bull">多頭</span>' : below(item.close,item.sma200) ? '<span class="trend bear">空頭</span>' : '<span class="muted">—</span>';
         return `<tr><td><a class="ticker" href="https://www.tradingview.com/chart/?symbol=${encodeURIComponent(item.symbol)}" target="_blank" rel="noopener">${item.ticker}</a></td><td class="name" title="${escapeHtml(item.description || item.label)}">${escapeHtml(item.label)}</td><td><span class="market">${item.market}</span></td><td>${price(item.close)}</td><td class="num ${valueClass(item.day)}">${pct(item.day)}</td><td class="num ${valueClass(item.week)}">${pct(item.week)}</td><td class="num ${valueClass(item.month)}">${pct(item.month)}</td><td>${trend}<br><span class="muted">${price(item.sma200)}</span></td><td>${item.rsi === null ? '—' : item.rsi.toFixed(1)}</td><td class="num ${valueClass(item.fromHigh === null ? 0 : -item.fromHigh)}">${item.fromHigh === null ? '—' : `${item.fromHigh.toFixed(1)}%`}</td><td class="num ${valueClass(item.sixMonth)}">${pct(item.sixMonth)}</td><td><div class="matches">${matches}</div></td></tr>`;
       }).join('') : '<tr><td class="empty" colspan="12">沒有符合目前條件的 ETF</td></tr>';
     }
 
     function escapeHtml(value) { return String(value || '').replace(/[&<>"']/g,char => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[char])); }
+
+    async function loadUniverse() {
+      const response = await fetch('./data/cathay-etfs.json', { cache:'no-store' });
+      if (!response.ok) throw new Error(`國泰 ETF 清單讀取失敗（${response.status}）`);
+      const source = await response.json();
+      if (!Array.isArray(source.items) || !source.items.length) throw new Error('國泰 ETF 清單格式不正確');
+      ETF_UNIVERSE = source.items;
+      return source;
+    }
 
     async function loadData() {
       const button = $('refreshBtn');
@@ -219,6 +232,7 @@
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), 18000);
       try {
+        const universe = await loadUniverse();
         const response = await fetch(SCAN_URL,{ method:'POST', body:JSON.stringify(scannerPayload()), signal:controller.signal });
         if (!response.ok) throw new Error(`TradingView 回應 ${response.status}`);
         allRows = normalise(await response.json());
@@ -228,7 +242,8 @@
           notice.textContent = `有 ${missing} 檔標的暫無法取得 TradingView 即時資料，已先略過。`;
           notice.className = 'notice';
         }
-        $('updateText').textContent = `最後更新：${new Intl.DateTimeFormat('zh-TW',{dateStyle:'medium',timeStyle:'medium'}).format(new Date())}`;
+        const synced = universe.syncedAt ? ` · 清單同步：${new Intl.DateTimeFormat('zh-TW',{dateStyle:'medium'}).format(new Date(universe.syncedAt))}` : '';
+        $('updateText').textContent = `最後更新：${new Intl.DateTimeFormat('zh-TW',{dateStyle:'medium',timeStyle:'medium'}).format(new Date())}${synced}`;
         renderScenarioButtons();
         renderTable();
       } catch (error) {
