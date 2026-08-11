@@ -138,7 +138,7 @@
     let ETF_UNIVERSE = FALLBACK_UNIVERSE;
 
     const SCENARIOS = [
-      { id:'all', name:'全部 ETF', rule:'顯示所有可取得即時資料的標的', test:() => true },
+      { id:'all', name:'全部 ETF', rule:'顯示國泰世華可銷售的所有 ETF', test:() => true },
       { id:'bullWeekDrop', name:'多頭本週大跌', rule:'收盤 > SMA200；週績效 ≤ -5%', test:x => above(x.close,x.sma200) && x.week <= -5 },
       { id:'bullMonthDrop', name:'多頭本月大跌', rule:'收盤 > SMA200；月績效 ≤ -10%', test:x => above(x.close,x.sma200) && x.month <= -10 },
       { id:'bearWeekRise', name:'空頭本週大漲', rule:'收盤 < SMA200；週績效 ≥ 5%', test:x => below(x.close,x.sma200) && x.week >= 5 },
@@ -166,17 +166,16 @@
     }
 
     function normalise(response) {
-      const bySymbol = new Map(ETF_UNIVERSE.map(item => [item.symbol,item]));
-      return (response.data || []).map(row => {
-        const meta = bySymbol.get(row.s);
-        if (!meta) return null;
-        const [name,description,close,day,week,month,threeMonth,sixMonth,sma20,sma50,sma150,sma200,high52,low52,rsi,relativeVolume,recommend] = row.d;
-        const item = { ...meta, apiName:name, description, close:number(close), day:number(day), week:number(week), month:number(month), threeMonth:number(threeMonth), sixMonth:number(sixMonth), sma20:number(sma20), sma50:number(sma50), sma150:number(sma150), sma200:number(sma200), high52:number(high52), low52:number(low52), rsi:number(rsi), relativeVolume:number(relativeVolume), recommend:number(recommend) };
+      const liveRows = new Map((response.data || []).map(row => [row.s, row.d]));
+      return ETF_UNIVERSE.map(meta => {
+        const row = liveRows.get(meta.symbol);
+        const [name,description,close,day,week,month,threeMonth,sixMonth,sma20,sma50,sma150,sma200,high52,low52,rsi,relativeVolume,recommend] = row || [];
+        const item = { ...meta, dataAvailable: Boolean(row), apiName:name, description, close:number(close), day:number(day), week:number(week), month:number(month), threeMonth:number(threeMonth), sixMonth:number(sixMonth), sma20:number(sma20), sma50:number(sma50), sma150:number(sma150), sma200:number(sma200), high52:number(high52), low52:number(low52), rsi:number(rsi), relativeVolume:number(relativeVolume), recommend:number(recommend) };
         item.fromHigh = item.close !== null && item.high52 ? Math.max(0,(item.high52 - item.close) / item.high52 * 100) : null;
         item.fromLow = item.close !== null && item.low52 ? (item.close - item.low52) / item.low52 * 100 : null;
         item.matches = SCENARIOS.filter(s => s.id !== 'all' && s.test(item)).map(s => s.id);
         return item;
-      }).filter(Boolean);
+      });
     }
 
     function scenarioMatches(item, scenarioId) { return SCENARIOS.find(s => s.id === scenarioId).test(item); }
@@ -216,11 +215,11 @@
     function renderTable() {
       const rows = currentRows();
       const scenarioName = SCENARIOS.find(s => s.id === activeScenario).name;
-      $('statusText').innerHTML = `顯示 <strong>${rows.length}</strong> / ${allRows.length} 檔可用標的 · 情境：<strong>${scenarioName}</strong>`;
+      $('statusText').innerHTML = `顯示 <strong>${rows.length}</strong> / ${allRows.length} 檔標的 · 情境：<strong>${scenarioName}</strong>`;
       $('tableBody').innerHTML = rows.length ? rows.map(item => {
         const matches = item.matches.length ? item.matches.map(id => `<span class="match">${SCENARIOS.find(s => s.id === id).name}</span>`).join('') : '<span class="muted">—</span>';
         const trend = above(item.close,item.sma200) ? '<span class="trend bull">多頭</span>' : below(item.close,item.sma200) ? '<span class="trend bear">空頭</span>' : '<span class="muted">—</span>';
-        return `<tr><td><a class="ticker" href="https://www.tradingview.com/chart/?symbol=${encodeURIComponent(item.symbol)}" target="_blank" rel="noopener">${item.ticker}</a></td><td class="name" title="${escapeHtml(item.description || item.label)}">${escapeHtml(item.label)}</td><td><span class="market">${item.market}</span></td><td>${price(item.close)}</td><td class="num ${valueClass(item.day)}">${pct(item.day)}</td><td class="num ${valueClass(item.week)}">${pct(item.week)}</td><td class="num ${valueClass(item.month)}">${pct(item.month)}</td><td>${trend}<br><span class="muted">${price(item.sma200)}</span></td><td>${item.rsi === null ? '—' : item.rsi.toFixed(1)}</td><td class="num ${valueClass(item.fromHigh === null ? 0 : -item.fromHigh)}">${item.fromHigh === null ? '—' : `${item.fromHigh.toFixed(1)}%`}</td><td class="num ${valueClass(item.sixMonth)}">${pct(item.sixMonth)}</td><td><div class="matches">${matches}</div></td></tr>`;
+        return `<tr><td><a class="ticker" href="https://www.tradingview.com/chart/?symbol=${encodeURIComponent(item.symbol)}" target="_blank" rel="noopener">${item.ticker}</a></td><td class="name" title="${escapeHtml(item.description || item.label)}">${escapeHtml(item.label)}${item.dataAvailable ? '' : '<br><span class="muted">TradingView 資料暫缺</span>'}</td><td><span class="market">${item.market}</span></td><td>${price(item.close)}</td><td class="num ${valueClass(item.day)}">${pct(item.day)}</td><td class="num ${valueClass(item.week)}">${pct(item.week)}</td><td class="num ${valueClass(item.month)}">${pct(item.month)}</td><td>${trend}<br><span class="muted">${price(item.sma200)}</span></td><td>${item.rsi === null ? '—' : item.rsi.toFixed(1)}</td><td class="num ${valueClass(item.fromHigh === null ? 0 : -item.fromHigh)}">${item.fromHigh === null ? '—' : `${item.fromHigh.toFixed(1)}%`}</td><td class="num ${valueClass(item.sixMonth)}">${pct(item.sixMonth)}</td><td><div class="matches">${matches}</div></td></tr>`;
       }).join('') : '<tr><td class="empty" colspan="12">沒有符合目前條件的 ETF</td></tr>';
     }
 
@@ -252,7 +251,7 @@
         if (!allRows.length) throw new Error('TradingView 未回傳可用標的');
         const missing = ETF_UNIVERSE.length - allRows.length;
         if (missing) {
-          notice.textContent = `有 ${missing} 檔標的暫無法取得 TradingView 即時資料，已先略過。`;
+          notice.textContent = `有 ${missing} 檔標的暫無法取得 TradingView 即時資料，已保留在清單並標示為資料暫缺。`;
           notice.className = 'notice';
         }
         const synced = universe.syncedAt ? ` · 清單同步：${new Intl.DateTimeFormat('zh-TW',{dateStyle:'medium'}).format(new Date(universe.syncedAt))}` : '';

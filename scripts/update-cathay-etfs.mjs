@@ -3,6 +3,7 @@ import { mkdir, writeFile } from 'node:fs/promises';
 const SOURCE_URL = 'https://www.cathaybk.com.tw/cathaybk/service/newwealth/search/search.asmx/ETFSearch';
 const OUTPUT_PATH = new URL('../data/cathay-etfs.json', import.meta.url);
 const EXCHANGES = {
+  AMEX: { tradingView: 'AMEX', market: 'US' },
   NYSE: { tradingView: 'AMEX', market: 'US' },
   NASDAQ: { tradingView: 'NASDAQ', market: 'US' },
   CboeBZX: { tradingView: 'CBOE', market: 'US' },
