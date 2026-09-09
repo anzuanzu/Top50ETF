@@ -1,6 +1,6 @@
 {
   "source": "https://www.cathaybk.com.tw/cathaybk/service/newwealth/search/search.asmx/ETFSearch",
-  "syncedAt": "2026-09-08T23:26:19.889Z",
+  "syncedAt": "2026-09-09T23:19:06.163Z",
   "count": 313,
   "items": [
     {
@@ -446,7 +446,7 @@
     {
       "symbol": "CBOE:ARKW",
       "ticker": "ARKW",
-      "label": "ARKW-ARK次世代網路主動型交易所交易基金",
+      "label": "ARKW-ARK次世代科技主動型交易所交易基金",
       "market": "US",
       "cathayExchange": "CboeBZX",
       "bankFundId": "00991418"
