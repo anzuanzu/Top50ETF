@@ -1,7 +1,7 @@
 {
   "source": "https://www.cathaybk.com.tw/cathaybk/service/newwealth/search/search.asmx/ETFSearch",
-  "syncedAt": "2026-09-15T23:32:42.318Z",
-  "count": 313,
+  "syncedAt": "2026-09-16T23:40:10.089Z",
+  "count": 314,
   "items": [
     {
       "symbol": "HKEX:2800",
@@ -1394,6 +1394,14 @@
       "market": "US",
       "cathayExchange": "AMEX",
       "bankFundId": "00991477"
+    },
+    {
+      "symbol": "NASDAQ:JEPQ",
+      "ticker": "JEPQ",
+      "label": "JEPQ-JPMorgan納斯達克股票溢價收益主動型ETF",
+      "market": "US",
+      "cathayExchange": "NASDAQ",
+      "bankFundId": "00991535"
     },
     {
       "symbol": "AMEX:JETS",
